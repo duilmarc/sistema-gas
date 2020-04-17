@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class servicio extends Model
+class participa_servicios extends Model
 {
     //
 }

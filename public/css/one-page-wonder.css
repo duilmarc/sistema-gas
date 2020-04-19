@@ -3,6 +3,13 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-one-page-wonder/blob/master/LICENSE)
  */
+#iniciar_sesion{
+  size: unset;
+  padding-top: 80px;
+  padding-bottom: 150px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
 
 body {
   font-family: 'Lato';
@@ -35,6 +42,7 @@ h6 {
 }
 
 .navbar-custom {
+  background: white;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -46,7 +54,10 @@ h6 {
   font-weight: 700;
 }
 
-.navbar-custom .navbar-nav .nav-item .nav-link {
+
+.navbar-custom .nav
+bar-nav .nav-item .nav-link {
+
   text-transform: uppercase;
   font-size: 0.8rem;
   font-weight: 700;
@@ -58,7 +69,7 @@ header.masthead {
   overflow: hidden;
   padding-top: calc(7rem + 72px);
   padding-bottom: 7rem;
-  background: linear-gradient(0deg, #7A0000 0%, #910505 100%);
+  background: url('../img/fondo.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
@@ -127,21 +138,25 @@ header.masthead .bg-circle-4 {
 }
 
 .bg-primary {
-  background-color: #ee0979 !important;
+  background-color: #ffffff !important;
+  color : black;
 }
 
 .btn-primary {
-  background-color: #ee0979;
-  border-color: #ee0979;
+  background-color: #F0F3F2;
+  border-color: #8B8B8B;
+  color : black;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: #bd0760 !important;
-  border-color: #bd0760 !important;
+  background-color: #B32828 !important;
+  border-color: #6B6C6C !important;
+  color:white;
 }
 
 .btn-primary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(238, 9, 121, 0.5);
+  box-shadow: 0 0 0 0.2rem0 #6B6C6C;
+  color:white;
 }
 
 .btn-secondary {

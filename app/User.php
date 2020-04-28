@@ -38,4 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function participacion()
+    {
+        return $this->hasMany('App\Models\Participa_servicio','id_voluntario');
+    }
 }

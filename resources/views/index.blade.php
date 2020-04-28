@@ -35,8 +35,7 @@
           <div class="p-5">
             <h2 class="display-4">La Cruz Roja Peruana Filial Arequipa...</h2>
             <p>En busca de la mejora continua del trabajo con los voluntarios, se diseño e implemento un 
-              sistema que busca mejorar la relación de los voluntarios y sus actividades que realizan en 
-              la filial. Esperamos que sea de mucha ayuda.
+              sistema que busca mejorar la relación de los voluntarios y sus actividades de la filial. Esperamos que sea de mucha ayuda.
                </p>
           </div>
         </div>
@@ -55,7 +54,7 @@
         <div class="col-lg-6">
           <div class="p-5">
             <h2 class="display-4">Sistema de control de horas y servicios!</h2>
-            <p>En este sistema podras visualizar las horas y los servicios que realizas en la filial, asi como también podrás realizar comentarios referentes a los servicios
+            <p>En este sistema podras visualizar las horas y los servicios que realizas en la filial, así como también podrás realizar comentarios referentes a los servicios
               que asistes, lo que permite tener una constante retroalimentación de la información y nos permite mejorar como
               institución.
             </p>

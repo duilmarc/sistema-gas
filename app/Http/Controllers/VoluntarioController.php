@@ -2,37 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Voluntario;
 use Illuminate\Http\Request;
 
-use App\Servicio;
-use App\User;
-
-class ServicioController extends Controller
+class VoluntarioController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function index()
     {
-        $servicios_general= Servicio::all();
-        return view('servicios.index',compact('servicios_general'));
+        //
     }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function mis_servicios($id)
-    {
-        
-    }
     public function create()
     {
         //
@@ -52,10 +41,10 @@ class ServicioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Voluntario  $voluntario
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Voluntario $voluntario)
     {
         //
     }
@@ -63,10 +52,10 @@ class ServicioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Voluntario  $voluntario
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Voluntario $voluntario)
     {
         //
     }
@@ -75,10 +64,10 @@ class ServicioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Voluntario  $voluntario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Voluntario $voluntario)
     {
         //
     }
@@ -86,10 +75,10 @@ class ServicioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Voluntario  $voluntario
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Voluntario $voluntario)
     {
         //
     }

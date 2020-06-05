@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Voluntario;
+use App\Motouso;
 use Illuminate\Http\Request;
 
-class VoluntarioController extends Controller
+class MotousoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class VoluntarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Voluntario  $voluntario
+     * @param  \App\Motouso  $motouso
      * @return \Illuminate\Http\Response
      */
-    public function show(Voluntario $voluntario)
+    public function show(Motouso $motouso)
     {
         //
     }
@@ -52,10 +52,10 @@ class VoluntarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Voluntario  $voluntario
+     * @param  \App\Motouso  $motouso
      * @return \Illuminate\Http\Response
      */
-    public function edit(Voluntario $voluntario)
+    public function edit(Motouso $motouso)
     {
         //
     }
@@ -64,10 +64,10 @@ class VoluntarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Voluntario  $voluntario
+     * @param  \App\Motouso  $motouso
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Voluntario $voluntario)
+    public function update(Request $request, Motouso $motouso)
     {
         //
     }
@@ -75,10 +75,10 @@ class VoluntarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Voluntario  $voluntario
+     * @param  \App\Motouso  $motouso
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Voluntario $voluntario)
+    public function destroy(Motouso $motouso)
     {
         //
     }

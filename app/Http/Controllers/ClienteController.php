@@ -14,7 +14,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        return 'Hola wapo ;)';
     }
 
     /**
@@ -24,7 +24,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('Clientes.ClientesCreate');
     }
 
     /**
@@ -35,7 +35,8 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request->input('nombre');
+        return $request->all();
     }
 
     /**

@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @yield('titulo')
+    
+    <title>Sistema Gas - @yield('titulo')</title>
     
 
     <!-- Scripts -->
@@ -71,6 +72,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+        
     </div>
 </body>
 </html>

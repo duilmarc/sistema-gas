@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
-@section('titulo','Clientes Create');
+@section('titulo','Clientes');
 
 @section('content')
+<a class="btn btn-primary btn-lg btn-block" href="{{ action('ClienteController@create') }}" role="button">Crear cliente</a>
+
 	<table class="table table-dark">
 		<thead>
 		    <tr>
@@ -62,6 +64,37 @@
 	    </div>
 	  </div>
 	</form>
+
+<a class="btn btn-primary btn-lg btn-block" href="" role="button">Visualizar cliente</a>
+
+<table class="table table-dark">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Telefono</th>
+	      <th scope="col">Nombres</th>
+	      <th scope="col">Apellido</th>
+	      <th scope="col">Direccion</th>
+	      <th scope="col">Latitud</th>
+	      <th scope="col">Longitud</th>
+	    </tr>
+	  </thead>
+	  @foreach($clientes as $cliente)
+
+		  <tbody>
+		    <tr>
+		      <th scope="row"></th>
+		      <td>{{$cliente->telefono}}</td>
+		      <td>{{$cliente->nombres}}</td>
+		      <td>{{$cliente->apellidos}}</td>
+		      <td>{{$cliente->direccion}}</td>
+		      <td>{{$cliente->latitud}}</td>
+		      <td>{{$cliente->longitud}}</td>
+		    </tr>
+		  </tbody>
+	  @endforeach
+</table>
+
 
 @endsection
 

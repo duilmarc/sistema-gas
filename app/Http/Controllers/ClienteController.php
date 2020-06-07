@@ -14,7 +14,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return 'Hola wapo ;)';
+        $clientes = Cliente::all();
+        return view('Clientes.index', compact('clientes'));
     }
 
     /**
@@ -36,7 +37,16 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         //return $request->input('nombre');
-        return $request->all();
+        $cliente = new Cliente();
+        $cliente->telefono = $request->input('telefono');
+        $cliente->apellidos = $request->input('nombre');
+        $cliente->nombres = $request->input('apellido');
+        $cliente->direccion = $request->input('direccion');
+        $cliente->latitud = $request->input('latitud');
+        $cliente->longitud = $request->input('longitud');
+        $cliente->save();
+        //return view('Clientes.index');  
+        //return $request->all();
     }
 
     /**

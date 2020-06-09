@@ -14,7 +14,8 @@ class VentaController extends Controller
      */
     public function index()
     {
-        //
+        $ventas= Venta::all();
+        return view('ventas.index',compact('ventas'));
     }
 
     /**

@@ -32,12 +32,12 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          LOGO
         </div>
         @role('administrador')
           <div class="sidebar-brand-text mx-3">Administrador</div>
@@ -54,8 +54,7 @@
         @role('voluntario_graduado')
         <div class="sidebar-brand-text mx-3">Jefatura<br>Voluntario</div>
         @endrole
-       
-       
+              
       </a>
 
       <!-- Divider -->
@@ -65,7 +64,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ url('/home') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Área de trabajo</span></a>
       </li>
 
       <!-- Divider -->
@@ -73,20 +72,20 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        <h6>Módulo Servicios</h6>
+        <h6>Ventas</h6>
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-ambulance "></i>
-          <span>Servicios</span>
+          <span>Ventas</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">  
-            <a class="collapse-item" href="buttons.html">Mis Servicios</a>
-            <a class="collapse-item" href="cards.html">Área</a>
-            <a class="collapse-item" href="{{ url('/servicios') }}">General</a>
+            <a class="collapse-item" href="buttons.html">Iniciar Día</a>
+            <a class="collapse-item" href="cards.html">Gastos</a>
+            <a class="collapse-item" href="{{ url('/servicios') }}">Ganancias</a>
           </div>
         </div>
       </li>
@@ -95,7 +94,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Herramientas</span>
+          <span>Clientes</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -117,14 +116,14 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Almacen
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <span>Gestionar Almacen</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -144,14 +143,7 @@
       <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Reportes</span></a>
       </li>
 
       <!-- Divider -->
@@ -181,7 +173,8 @@
               <!-- Logo-->
               <!-- Topbar Search -->
               <div class="d-none d-sm-inline-block  mr-auto ml-md-3 my-2 my-md-0 mw-100">
-                <img src="{{ asset('img/logo.jpeg') }}" width="170" height="30" class="d-inline-block align-top" alt="">
+                <!-- <img src="{{ asset('img/logo.jpeg') }}" width="170" height="30" class="d-inline-block align-top" alt="">-->
+                GAS A DOMICILIO
               </div>
     
               <!-- Topbar Navbar -->
@@ -336,7 +329,7 @@
         <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; Apps Core 2020</span>
             </div>
         </div>
         </footer>
@@ -358,12 +351,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Listo para Terminar?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
             </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Selecciona Logout para terminar la sesión.</div>
         <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">{{ __('Cancel') }}</button>
             <a class="btn btn-danger" href="{{ route('logout') }}"

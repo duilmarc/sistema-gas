@@ -54,20 +54,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="area" class="col-md-4 col-form-label text-md-right">{{ __('Area') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="area" type="area" class="form-control @error('area') is-invalid @enderror" name="area" value="{{ old('area') }}" required autocomplete="">
-
-                                @error('area')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
+                        
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

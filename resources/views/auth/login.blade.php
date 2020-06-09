@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('titulo')
-<title>Ingresar a Sistema</title>
+Ingresar a Sistema
 @endsection
 
 @section('content')

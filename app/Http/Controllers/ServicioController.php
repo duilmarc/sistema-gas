@@ -22,7 +22,8 @@ class ServicioController extends Controller
     public function index()
     {
         $servicios_general= Servicio::all();
-        return view('servicios.index',compact('servicios_general'));
+        $repartidor = 'Nicolas';
+        return view('servicios.index',compact('servicios_general','repartidor'));
     }
     /**
      * Show the form for creating a new resource.

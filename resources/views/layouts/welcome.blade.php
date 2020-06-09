@@ -27,7 +27,7 @@
   <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
     <div class="container">
       <a class="navbar-brand" href="{{ url('/') }}">
-        <img src="{{ asset('img/logo.jpeg') }}" width="170" height="30" class="d-inline-block align-top" alt="">
+        GAS A DOMICILIO
       </a>
     </div>
   </nav>
@@ -39,7 +39,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-black">
     <div class="container">
-      <p class="m-0 text-center text-white small">Copyright &copy; Cruz Roja Peruana Filial Provincial Arequipa</p>
+      <p class="m-0 text-center text-white small">Copyright &copy; Apps Core</p>
       <p class="m-0 text-center text-white small">2020</p>
     </div>
     <!-- /.container -->

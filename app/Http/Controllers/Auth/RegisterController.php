@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        
     }
 
     /**
@@ -65,7 +65,6 @@ class RegisterController extends Controller
     {
         return User::create([
             'id'   => $data['id'],
-            'area' => $data['area'],
             'name' => $data['name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],

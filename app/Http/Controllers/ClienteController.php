@@ -12,6 +12,12 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /*
+    public function __construct(){
+        $this->middleware('auth');
+    }*/
+
+
     public function index()
     {
         $clientes = Cliente::all();
@@ -45,7 +51,8 @@ class ClienteController extends Controller
         $cliente->latitud = $request->input('latitud');
         $cliente->longitud = $request->input('longitud');
         $cliente->save();
-        //return view('Clientes.index');  
+
+        return redirect()->back();
         //return $request->all();
     }
 
@@ -57,7 +64,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+       //return view('clientes.show', compact('cliente'));
     }
 
     /**

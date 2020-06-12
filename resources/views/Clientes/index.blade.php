@@ -91,6 +91,7 @@
                             <th>Dirección</th>
                             <th>Latitud</th>
                             <th>Longitud</th>
+                            <th>Ver mas...</th>
                         </tr>
                       </thead>
                       
@@ -103,7 +104,7 @@
 							      <td>{{$cliente->latitud}}</td>
 							      <td>{{$cliente->longitud}}</td>
                                 <td><center>
-                                    <a class="btn btn-info" href="{{ url('/servicios/'.$cliente->id) }}" aria-label="Settings">
+                                    <a class="btn btn-info" href="/clientes/{{$cliente->telefono}}" aria-label="Settings">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
                                     </center>

@@ -14,7 +14,8 @@ class AlmacenController extends Controller
      */
     public function index()
     {
-        //
+        $almacenes = Almacen::all();
+        return view('Almacen.index', compact('almacenes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class AlmacenController extends Controller
      */
     public function create()
     {
-        //
+        return view('Almacen.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class AlmacenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $almacen = new Almacen();
+        $almacen->almacen = $request->input('almacen');
+        $almacen->balon_lleno_normal = $request->input('balon_lleno_normal');
+        $almacen->balon_lleno_premiun = $request->input('balon_lleno_premiun');
+        $almacen->balon_vacio_normal = $request->input('balon_vacio_normal');
+        $almacen->balon_vacio_premiun = $request->input('balon_vacio_premiun');
+        $almacen->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -46,7 +55,7 @@ class AlmacenController extends Controller
      */
     public function show(Almacen $almacen)
     {
-        //
+        return view('Almacen.show', compact('almacen'));
     }
 
     /**

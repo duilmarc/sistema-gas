@@ -19,6 +19,7 @@ class CreateAlmacensTable extends Migration
             $table->integer('balon_lleno_premiun');
             $table->integer('balon_vacio_normal');
             $table->integer('balon_vacio_premiun');
+            $table->timestamps();
         });
     }
 

@@ -17,6 +17,7 @@ class CreateMotosTable extends Migration
             $table->integer('id');
             $table->primary('id');
             $table->string('color');
+            $table->timestamps();
 
         });
     }

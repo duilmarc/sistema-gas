@@ -76,7 +76,7 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('Clientes.edit', compact('cliente'));
     }
 
     /**
@@ -88,7 +88,9 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        $cliente->fill($request->all());
+        $cliente->save();
+        return redirect()->back(); 
     }
 
     /**

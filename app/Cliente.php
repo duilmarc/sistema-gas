@@ -17,4 +17,9 @@ class Cliente extends Model
 	{
 	    return 'telefono';
 	}
+	public function searchID($id)
+	{
+		return true;
+	}
+
 }

@@ -7,14 +7,14 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-1 text-gray-800">Ventas</h1>
+<h1 class="h3 mb-1 text-gray-800">Ventas - Fecha:  @php echo Carbon\Carbon::today()->toFormattedDateString() @endphp</h1>
     <p class="mb-4"></p>
 
     <!-- Content Row -->
     <div class="row">
 
         <!-- Border Left Utilities -->
-        <div class="col-lg-12">
+      <div class="col-lg-6">
         <div class="card shadow mb-4  border-left-primary">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Registrar venta</h6>
@@ -23,45 +23,41 @@
                 <form method="POST" action="/ventas">
                     @csrf
                   <div class="form-row align-items-center">
-                      <div class="col-auto">
+                      <div class="col-auto col-sm-4">
                       <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
                       <div class="input-group mb-2">
                         <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" placeholder="Telefono">
                       </div>
                     </div>
             
-                    <div class="col-auto">
-                      <label class="sr-only" for="inlineFormInput">Nombre</label>
-                      <input type="text" name="nombre" class="form-control mb-2" id="inlineFormInput" placeholder="Nombre">
+                    <div class="col-8 col-sm-6">
+                      <label class="sr-only" for="inlineFormInput">Direccion</label>
+                      <input type="text" name="direccion" class="form-control mb-2" id="inlineFormInput" placeholder="Dirección">
                     </div>
                     <div class="col-auto">
-                      <label class="sr-only" for="inlineFormInputGroup">Apellido</label>
-                      <div class="input-group mb-2">
-                        <input type="text" name="apellido" class="form-control" id="inlineFormInputGroup" placeholder="Apellido">
+                      <label class="sr-only" for="inlineFormInputGroup">Tipo balon</label>
+                        <div class="input-group mb-2">
+                          <select class="form-control" name="balon" id="exampleFormControlSelect1">
+                            <option value="normal">normal</option>
+                            <option value="premium">premium</option>
+                          </select>
                       </div>
                     </div>
-                    <div class="col-auto">
-                      <label class="sr-only" for="inlineFormInputGroup">Direccion</label>
+                    <div class="col-4">
+                      <label class="sr-only" for="inlineFormInputGroup">precio</label>
                       <div class="input-group mb-2">
-                        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" placeholder="Direccion">
-                      </div>
-                    </div>
-            
-                    <div class="col-auto">
-                      <label class="sr-only" for="inlineFormInputGroup">Latitud</label>
-                      <div class="input-group mb-2">
-                        <input type="text" name="latitud" class="form-control" id="inlineFormInputGroup" placeholder="Latitud">
+                        <input type="number" name="precio" class="form-control" id="inlineFormInputGroup" placeholder="Precio">
                       </div>
                     </div>
             
-                    <div class="col-auto">
-                      <label class="sr-only" for="inlineFormInputGroup">Longitud</label>
+                    <div class="col-12">
+                      <label class="sr-only" for="inlineFormInputGroup">Referencia</label>
                       <div class="input-group mb-2">
-                        <input type="text" name="longitud" class="form-control" id="inlineFormInputGroup" placeholder="Longitud">
+                        <input type="text" name="referencia" class="form-control" id="inlineFormInputGroup" placeholder="Referencia">
                       </div>
                     </div>
             
-                    <div class="col-auto">
+                    <div class="col-12">
                       <button type="submit" class="btn btn-primary mb-2">Registrar</button>
                     </div>
                   </div>
@@ -69,6 +65,106 @@
             </div>
         </div>
         </div>
+        <div class=" col-lg-6"> 
+          <!-- Content Row -->
+          <div class="row">
+            
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pendientes</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Asignados</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Realizados</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+                        <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-6 col-md-6 mb-4">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Cancelados</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        @if(session('notificacion'))
+        <div class="col-lg-12">
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Aviso!</h4>
+            {{session('notificacion')}}
+          </div>
+        </div>
+        @endif
         <div class="col-lg-12">
             <div class="card shadow mb-4  border-left-primary">
                 <div class="card-header py-3">
@@ -76,46 +172,74 @@
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered" bg="red" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
+                    <table class="table table-hover table-dark table-sm table-bordered " bg="white" id="dataTable" width="100%" cellspacing="0">
+                      <thead >
                         <tr>
-                            <th>Telefono Contacto</th>
+                            <th>Telefono</th>
                             <th>Direccion</th>
                             <th>Balon</th>
                             <th>Precio</th>
                             <th>Referencia</th>
                             <th>Repartidor</th>
-                            <th>Fecha</th>
-                            <th>estado</th>
-                            <th>Acciones</th>
+                            <th>Realizado</th>
+                            <th>Cancelado</th>
+                            <th>Estado</th>
                         </tr>
                       </thead>
                       
                       <tbody>
                         @foreach ($ventas as $venta)
-                           @if ($venta->estado == 'pendiente')
-                            <tr class="table-warning">    
-                           @else
-                            <tr>
-                            @endif        
+  
                                 <td> {{ $venta->telefono  }} </td>
                                 <td> {{ $venta->direccion  }} </td>
                                 <td> {{ $venta->balon  }} </td>
                                 <td> {{ $venta->precio  }} </td>
                                 <td> {{ $venta->referencia  }} </td>
-                                @if (true)
-                                    <td> {{ $venta->repartidor  }} </td>      
-                                @else
-                                    <td> Sin Repartidor </td>   
-                                @endif
-                                <td> {{ $venta->fecha  }} </td>
-                                <td>{{ $venta->estado }}</td>
-                                <td><center>
-                                    <a class="btn btn-info" href="{{ url('/servicios/'.$venta->id) }}" aria-label="Settings">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
+                                @if ($venta->nombre)
+                                <td>
+                                  <div class="dropdown mb-4">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      {{$venta->nombre}}
+                                    </button>
+                                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                                      @foreach ($empleados as $empleado)
+                                      <a class="dropdown-item" href="/ventas/asignar/{{ $venta->id }}/{{ $empleado->id }}"> {{ $empleado->nombre }}</a>
+                                      @endforeach
+                                    </div>
+                                  </div>   
+                                </td>  
+                                    <td>
+                                      <a class="btn btn-success" href="{{ url('/ventas/a/'.$venta->id) }}" aria-label="Settings">
+                                          Entregado
+                                      </a>
+                                    </td>
+                                @else 
+                                <td>
+                                  <div class="dropdown mb-4">
+                                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Seleccionar Repartidor
+                                    </button>
+                                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
+                                      @foreach ($empleados as $empleado)
+                                        <a class="dropdown-item" href="/ventas/asignar/{{ $venta->id }}/{{ $empleado->id }}"> {{ $empleado->nombre }}</a>
+                                      
+                                      @endforeach
+                                    </div>
+                                  </div>   
+                                </td>  
+                                  <td><center>
+                                    <button type="submit" class="btn disabled btn-success mb-2">Entregado</button>
                                     </center>
+                                  </td>
+                                </form>
+                                @endif
+                                <td>
+                                  <a class="btn btn-danger" href="{{ url('/ventas/c/'.$venta->id) }}" aria-label="Settings">
+                                    Cancelar
+                                </a>
                                 </td>
+                                
+                                <td>{{ $venta->estado }}</td>
                             </tr>
                         @endforeach
                         

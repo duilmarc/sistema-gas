@@ -28,9 +28,6 @@
                             <th>Precio</th>
                             <th>Referencia</th>
                             <th>Repartidor</th>
-                            <th>Realizado</th>
-                            <th>Cancelado</th>
-                            <th>Estado</th>
                         </tr>
                       </thead>
                       
@@ -42,51 +39,8 @@
                                 <td> {{ $venta->balon  }} </td>
                                 <td> {{ $venta->precio  }} </td>
                                 <td> {{ $venta->referencia  }} </td>
-                                @if ($venta->nombre)
-                                <td>
-                                  <div class="dropdown mb-4">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      {{$venta->nombre}}
-                                    </button>
-                                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                      @foreach ($empleados as $empleado)
-                                      <a class="dropdown-item" href="/ventas/asignar/{{ $venta->id }}/{{ $empleado->id }}"> {{ $empleado->nombre }}</a>
-                                      @endforeach
-                                    </div>
-                                  </div>   
-                                </td>  
-                                    <td>
-                                      <a class="btn btn-success" href="{{ url('/ventas/a/'.$venta->id) }}" aria-label="Settings">
-                                          Entregado
-                                      </a>
-                                    </td>
-                                @else 
-                                <td>
-                                  <div class="dropdown mb-4">
-                                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Seleccionar Repartidor
-                                    </button>
-                                    <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                                      @foreach ($empleados as $empleado)
-                                        <a class="dropdown-item" href="/ventas/asignar/{{ $venta->id }}/{{ $empleado->id }}"> {{ $empleado->nombre }}</a>
-                                      
-                                      @endforeach
-                                    </div>
-                                  </div>   
-                                </td>  
-                                  <td><center>
-                                    <button type="submit" class="btn disabled btn-success mb-2">Entregado</button>
-                                    </center>
-                                  </td>
-                                </form>
-                                @endif
-                                <td>
-                                  <a class="btn btn-danger" href="{{ url('/ventas/c/'.$venta->id) }}" aria-label="Settings">
-                                    Cancelar
-                                </a>
-                                </td>
+                                <td> {{ $venta->nombre }}</td> 
                                 
-                                <td>{{ $venta->estado }}</td>
                             </tr>
                         @endforeach
                         

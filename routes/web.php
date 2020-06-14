@@ -28,6 +28,8 @@ Route::get('/ventas/realizadas','VentaController@show_accept');
 Route::get('/ventas/a/{id}', 'VentaController@realizado');
 Route::get('/ventas/c/{id}', 'VentaController@cancelado');
 Route::get('/ventas/asignar/{id_venta}/{id_repartidor}', 'VentaController@asignar_repartidor');
+Route::get('/clientes/{telefono}', 'ClienteController@show');
+
 Route::resource('/ventas', 'VentaController');
 Route::resource('/almacen', 'AlmacenController');
 

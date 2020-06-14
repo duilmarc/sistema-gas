@@ -17,10 +17,10 @@
 			<thead>
 				   <tr>
 				        <th scope="col">Almacen</th>
-                        <th scope="col">balon_lleno_normal</th>
-                        <th scope="col">balon_lleno_premiun</th>
-                        <th scope="col">balon_vacio_normal</th>
-                        <th scope="col">balon_vacio_premiun</th>
+                        <th scope="col">balon lleno normal</th>
+                        <th scope="col">balon lleno premiun</th>
+                        <th scope="col">balon vacio normal</th>
+                        <th scope="col">balon vacio premiun</th>
 				   </tr>
 			</thead>
 		</table>
@@ -36,17 +36,17 @@
 
 
 			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInput">balon_lleno_normal</label>
+			      <label class="sr-only" for="inlineFormInput">balon lleno normal</label>
 			      <input type="text" name="balon_lleno_normal" class="form-control mb-2" id="inlineFormInput" placeholder="balon_lleno_normal">
 			    </div>
 			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">balon_lleno_premiun</label>
+			      <label class="sr-only" for="inlineFormInputGroup">balon lleno premiun</label>
 			      <div class="input-group mb-2">
 			        <input type="text" name="balon_lleno_premiun" class="form-control" id="inlineFormInputGroup" placeholder="balon_lleno_premiun">
 			      </div>
 			    </div>
 			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">balon_vacio_normal</label>
+			      <label class="sr-only" for="inlineFormInputGroup">balon vacio normal</label>
 			      <div class="input-group mb-2">
 			        <input type="text" name="balon_vacio_normal" class="form-control" id="inlineFormInputGroup" placeholder="balon_vacio_normal">
 			      </div>
@@ -54,7 +54,7 @@
 
 
 			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">balon_vacio_premiun</label>
+			      <label class="sr-only" for="inlineFormInputGroup">balon vacio premiun</label>
 			      <div class="input-group mb-2">
 			        <input type="text" name="balon_vacio_premiun" class="form-control" id="inlineFormInputGroup" placeholder="balon_vacio_premiun">
 			      </div>
@@ -78,10 +78,10 @@
                       <thead>
                         <tr>
                             <th>Almacen</th>
-                            <th>balon_lleno_normal</th>
-                            <th>balon_lleno_premiun</th>
-                            <th>balon_vacio_normal</th>
-                            <th>balon_vacio_premiun</th>
+                            <th>balon lleno normal</th>
+                            <th>balon lleno premiun</th>
+                            <th>balon vacio normal</th>
+                            <th>balon vacio premiun</th>
                             <th>Ver mas...</th>
                         </tr>
                       </thead>

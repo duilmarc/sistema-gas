@@ -1,6 +1,8 @@
 @extends('layouts.dashboard')
 
-@section('titulo','Clientes');
+@section('titulo')
+<title>Sistema- Clientes</title>
+@endsection
 
 @section('content')
 <!-- Begin Page Content -->
@@ -20,8 +22,7 @@
 				      <th scope="col">Nombres</th>
 				      <th scope="col">Apellido</th>
 				      <th scope="col">Direccion</th>
-				      <th scope="col">Latitud</th>
-				      <th scope="col">Longitud</th>
+
 				   </tr>
 			</thead>
 		</table>
@@ -53,28 +54,30 @@
 			      </div>
 			    </div>
 
-
-			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">Latitud</label>
-			      <div class="input-group mb-2">
-			        <input type="text" name="latitud" class="form-control" id="inlineFormInputGroup" placeholder="Latitud">
-			      </div>
-			    </div>
-
-			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">Longitud</label>
-			      <div class="input-group mb-2">
-			        <input type="text" name="longitud" class="form-control" id="inlineFormInputGroup" placeholder="Longitud">
-			      </div>
-			    </div>
-
 			    <div class="col-auto">
 			      <button type="submit" class="btn btn-primary mb-2">Registrar</button>
 			    </div>		    
 			  </div>
 			</form>
 		</div>
-
+		@if(session('notificacion'))
+        <div class="col-lg-12">
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Aviso!</h4>
+            {{session('notificacion')}}
+          </div>
+        </div>
+        @endif
+        @if(session('notificacion_cross'))
+        <div class="col-lg-12">
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-times"></i> Aviso!</h4>
+            {{session('notificacion_cross')}}
+          </div>
+        </div>
+        @endif
         <div class="col-lg-12">
             <div class="card shadow mb-4  border-left-primary">
                 <div class="card-header py-3">
@@ -89,8 +92,6 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Dirección</th>
-                            <th>Latitud</th>
-                            <th>Longitud</th>
                             <th>Editar...</th>
                         </tr>
                       </thead>
@@ -101,8 +102,6 @@
 							      <td>{{$cliente->nombres}}</td>
 							      <td>{{$cliente->apellidos}}</td>
 							      <td>{{$cliente->direccion}}</td>
-							      <td>{{$cliente->latitud}}</td>
-							      <td>{{$cliente->longitud}}</td>
                                 <td><center>
                                     <a class="btn btn-info" href="/clientes/{{$cliente->telefono}}/edit" aria-label="show">
                                         <i class="fa fa-eye" aria-hidden="true"></i>

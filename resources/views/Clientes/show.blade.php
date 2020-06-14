@@ -25,8 +25,6 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Dirección</th>
-                            <th>Latitud</th>
-                            <th>Longitud</th>
                             <th>Ver mas...</th>
                         </tr>
                       </thead>
@@ -37,8 +35,6 @@
 							      <td>{{$cliente->nombres}}</td>
 							      <td>{{$cliente->apellidos}}</td>
 							      <td>{{$cliente->direccion}}</td>
-							      <td>{{$cliente->latitud}}</td>
-							      <td>{{$cliente->longitud}}</td>
                                 <td><center>
                                     <a class="btn btn-info" href="/clientes/{{$cliente->telefono}}" aria-label="Settings">
                                         <i class="fa fa-eye" aria-hidden="true"></i>

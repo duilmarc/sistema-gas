@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class ClienteController extends Controller
 {
@@ -43,16 +45,23 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         //return $request->input('nombre');
-        $cliente = new Cliente();
-        $cliente->telefono = $request->input('telefono');
-        $cliente->apellidos = $request->input('nombre');
-        $cliente->nombres = $request->input('apellido');
-        $cliente->direccion = $request->input('direccion');
-        $cliente->latitud = $request->input('latitud');
-        $cliente->longitud = $request->input('longitud');
-        $cliente->save();
+        $telefono  = $request->input('telefono');
+        $user = Cliente::find($telefono);
+        if($user){
+            return redirect()->back()->with('notificacion_cross','Error, el numero de telefono ya esta registrado');;;
+        }
+        else{
 
-        return redirect()->back();
+            $cliente = new Cliente();
+            $cliente->telefono = $request->input('telefono');
+            $cliente->apellidos = $request->input('nombre');
+            $cliente->nombres = $request->input('apellido');
+            $cliente->direccion = $request->input('direccion');
+            $cliente->latitud = $request->input('latitud');
+            $cliente->longitud = $request->input('longitud');
+            $cliente->save();
+        }
+        return redirect()->back()->with('notificacion','Se Registro un cliente correctamente');;;
         //return $request->all();
     }
 
@@ -90,7 +99,7 @@ class ClienteController extends Controller
     {
         $cliente->fill($request->all());
         $cliente->save();
-        return redirect()->back(); 
+        return redirect()->index(); 
     }
 
     /**

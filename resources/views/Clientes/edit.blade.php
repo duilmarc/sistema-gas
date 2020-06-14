@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('titulo','Clientes Create');
 
@@ -15,12 +15,10 @@
 		<table class="table table-dark">
 			<thead>
 				   <tr>
-				      <th scope="col">Telefono</th>
-				      <th scope="col">Nombres</th>
-				      <th scope="col">Apellido</th>
-				      <th scope="col">Direccion</th>
-				      <th scope="col">Latitud</th>
-				      <th scope="col">Longitud</th>
+				      <th scope="col-auto">Telefono</th>
+				      <th scope="col-auto">Nombres</th>
+				      <th scope="col-auto">Apellido</th>
+				      <th scope="col-auto">Direccion</th>
 				   </tr>
 			</thead>
 		</table>
@@ -50,21 +48,6 @@
 			      <label class="sr-only" for="inlineFormInputGroup">Direccion</label>
 			      <div class="input-group mb-2">
 			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" value="{{$cliente->direccion}}">
-			      </div>
-			    </div>
-
-
-			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">Latitud</label>
-			      <div class="input-group mb-2">
-			        <input type="text" name="latitud" class="form-control" id="inlineFormInputGroup" value="{{$cliente->latitud}}">
-			      </div>
-			    </div>
-
-			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">Longitud</label>
-			      <div class="input-group mb-2">
-			        <input type="text" name="longitud" class="form-control" id="inlineFormInputGroup" value="{{$cliente->longitud}}">
 			      </div>
 			    </div>
 

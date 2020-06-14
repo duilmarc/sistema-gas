@@ -35,11 +35,10 @@
     <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-          LOGO
-        </div>
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
+          <img src="img/gas_icon.png" class="img-fluid" style="max-width: 60%;">
       </a>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -82,15 +81,7 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Encargado</h6>
-              <a class="collapse-item" href="utilities-color.html">Asistencia voluntarios</a>
-            <h6 class="collapse-header">Gestion</h6>
-              <a class="collapse-item" href="utilities-color.html">Crear/Eliminar/Editar</a>
-              <a class="collapse-item" href="utilities-border.html">Seleccionar Encargado</a>
-              <a class="collapse-item" href="utilities-animation.html">Registrar Participantes</a>
-            <h6 class="collapse-header">Validación</h6>
-              <a class="collapse-item" href="utilities-color.html">Validar Servicios</a>
-              <a class="collapse-item" href="utilities-border.html">Validar Horas</a>
+              <a class="collapse-item" href="{{ url('/clientes') }}">Registrar/Ver clientes</a>
           </div>
         </div>
       </li>
@@ -111,14 +102,31 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+            <a class="collapse-item" href="{{ url('/almacen') }}">Registrar/Ver almacen</a>
+          </div>
+        </div>
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Gestionar motos</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{ url('/motos') }}">Registrar/Ver motos</a>
+          </div>
+        </div>
+      </li>
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Gestionar repartidores</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{ url('/repartidores') }}">Registrar/Ver repartidores</a>
           </div>
         </div>
       </li>
@@ -176,15 +184,15 @@
                   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="#">
                       <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Profile
+                      Perfil
                     </a>
                     <a class="dropdown-item" href="#">
                       <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Settings
+                      Opciones
                     </a>
                     <a class="dropdown-item" href="#">
                       <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Activity Log
+                      Registro de actividad
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

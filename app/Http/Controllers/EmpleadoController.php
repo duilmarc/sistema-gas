@@ -14,7 +14,8 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        //
+        $empleados = Empleado::all();
+        return view('Empleado.index', compact('empleados'));
     }
 
     /**
@@ -35,7 +36,22 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $telefono  = $request->input('telefono');
+        $user = Empleado::find($telefono);
+        if($user){
+            return redirect()->back()->with('notificacion_cross','Error, el numero de telefono ya esta registrado');;;
+        }
+        else{
+            $empleado = new Empleado();
+            $empleado->id = $request->input('telefono');
+            $empleado->telefono = $request->input('telefono');
+            $empleado->nombre = $request->input('nombres');
+            $empleado->direccion = $request->input('direccion');
+            $empleado->salario = $request->input('salario');
+            $empleado->save();
+        }
+        return redirect()->back()->with('notificacion','Se Registro un cliente correctamente');;;
+        //return $request->all();
     }
 
     /**

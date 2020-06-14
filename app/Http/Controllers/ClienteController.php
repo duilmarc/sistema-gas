@@ -54,8 +54,8 @@ class ClienteController extends Controller
 
             $cliente = new Cliente();
             $cliente->telefono = $request->input('telefono');
-            $cliente->apellidos = $request->input('nombre');
-            $cliente->nombres = $request->input('apellido');
+            $cliente->apellidos = $request->input('apellido');
+            $cliente->nombres = $request->input('nombre');
             $cliente->direccion = $request->input('direccion');
             $cliente->latitud = $request->input('latitud');
             $cliente->longitud = $request->input('longitud');

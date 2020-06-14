@@ -32,6 +32,7 @@ Route::get('/clientes/{telefono}', 'ClienteController@show');
 
 Route::resource('/ventas', 'VentaController');
 Route::resource('/almacen', 'AlmacenController');
-
+Route::resource('/empleados','EmpleadoController');
+Route::resource('/motos','MotoController');
 
 

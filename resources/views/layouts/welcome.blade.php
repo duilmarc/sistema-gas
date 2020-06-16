@@ -11,8 +11,8 @@
   @yield('titulo')
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+  _<link href="{{ asset('css/fuentes/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
@@ -46,8 +46,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('css/fuentes/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('css/fuentes/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 </body>
 

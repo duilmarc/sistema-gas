@@ -24,12 +24,13 @@ class VentaController extends Controller
         $empleados = Empleado::all();
         $ventas= DB::table('ventas')
             ->leftJoin('empleados', 'empleados.id', '=', 'ventas.repartidor')   
-            #->where('ventas.fecha','=',$mytime)
             ->where([
                 ['ventas.estado', '=', 'pendiente'],
+                ['ventas.fecha','=',$mytime],
             ])
             ->orWhere([
                 ['ventas.estado', '=', 'asignado'],
+                ['ventas.fecha','=',$mytime]
             ])
             ->select('ventas.id','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
             ->get();
@@ -167,22 +168,30 @@ class VentaController extends Controller
     }
     public function show_accept()
     {
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
+        $total = DB::table("ventas")->where('ventas.fecha','=',$mytime)
+        ->where([
+            ['ventas.estado', '=', 'realizado'],
+        ])->get()->sum("precio");
         $ventas= DB::table('ventas')
             ->leftJoin('empleados', 'empleados.id', '=', 'ventas.repartidor')   
-            #->where('ventas.fecha','=',$mytime)
+            ->where('ventas.fecha','=',$mytime)
             ->where([
                 ['ventas.estado', '=', 'realizado'],
             ])
             ->select('ventas.id','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
             ->get();
-        return view('ventas.realizadas',compact('ventas'));
+        return view('ventas.realizadas',compact('ventas','total'));
     }
 
     public function show_cancel()
     {
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
         $ventas= DB::table('ventas')
         ->leftJoin('empleados', 'empleados.id', '=', 'ventas.repartidor')   
-        #->where('ventas.fecha','=',$mytime)
+        ->where('ventas.fecha','=',$mytime)
         ->where([
             ['ventas.estado', '=', 'cancelado'],
         ])

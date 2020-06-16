@@ -8,6 +8,7 @@
 
     <!-- Page Heading -->
 <h1 class="h3 mb-1 text-gray-800">Ventas Realizadas- Fecha:  @php echo Carbon\Carbon::today()->toFormattedDateString() @endphp</h1>
+    <h3 class="h3 mb-1 text-gray-800">Total Ganancia del dia : S/{{ $total }}</h3>
     <p class="mb-4"></p>
 
     <!-- Content Row -->
@@ -19,7 +20,7 @@
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-dark table-sm table-bordered " bg="white" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-hover table-info text-dark table-sm table-bordered " bg="white" id="dataTable" width="100%" cellspacing="0">
                       <thead >
                         <tr>
                             <th>Telefono</th>
@@ -59,10 +60,10 @@
 @section('footers')
 
   <!-- Page level plugins -->
-  <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('css/fuentes/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('css/fuentes/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
   <!-- Page level custom scripts -->
-  <script src="{{ asset('js/demo/datatables-demo.js')}}"></script>
+  <script src="{{ asset('css/fuentes/demo/datatables-demo.js')}}"></script>
 
 @endsection

@@ -105,7 +105,7 @@
                         <td>{{$empleado->direccion}}</td>
                         <td>{{$empleado->salario}}</td>
                                 <td><center>
-                                    <a class="btn btn-info" href="/clientes/{{$empleado->telefono}}/edit" aria-label="show">
+                                    <a class="btn btn-info" href="/empleados/{{$empleado->telefono}}/edit" aria-label="edit">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
                                     </center>

@@ -73,7 +73,8 @@ class EmpleadoController extends Controller
      */
     public function edit(Empleado $empleado)
     {
-        //
+
+        return view('Empleado.edit', compact('empleado'));
     }
 
     /**
@@ -85,7 +86,10 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, Empleado $empleado)
     {
-        //
+        $empleado->fill($request->all());
+        $empleado->save();
+        $empleados = Empleado::all();
+        return view('Empleado.index', compact('empleados'))->with('notificacion','Se Registro un repartidor correctamente');;;
     }
 
     /**

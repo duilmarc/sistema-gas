@@ -1,23 +1,23 @@
 @extends('layouts.dashboard')
 
-@section('titulo','Clientes Create');
+@section('titulo','empleados Create');
 
 @section('content')
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-1 text-gray-800">Clientes</h1>
+    <h1 class="h3 mb-1 text-gray-800">empleados</h1>
 	<p class="mb-4"></p>
 	<div class="col-lg-12">
 		<div class="card-header py-3">
-	                <h6 class="m-0 font-weight-bold text-primary">Editar Cliente</h6>
+	                <h6 class="m-0 font-weight-bold text-primary">Editar empleado</h6>
 	    </div>
 		<table class="table table-dark">
 			<thead>
 				   <tr>
 				      <th scope="col-auto">Telefono</th>
 				      <th scope="col-auto">Nombres</th>
-				      <th scope="col-auto">Apellido</th>
+				      <th scope="col-auto">Salario</th>
 				      <th scope="col-auto">Direccion</th>
 				   </tr>
 			</thead>
@@ -40,32 +40,32 @@
 		          </div>
 		        </div>
         @endif
-			<form method="POST" action="/clientes/{{$cliente->telefono}}" >
+			<form method="POST" action="/empleados/{{$empleado->telefono}}" >
 				@method('PUT')
 				@csrf
 			  <div class="form-row align-items-center">
 			  	<div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" value="{{$cliente->telefono}}">
+			        <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" value="{{$empleado->telefono}}">
 			      </div>
 			    </div>
 
 
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInput">Nombre</label>
-			      <input type="text" name="nombres" class="form-control mb-2" id="inlineFormInput" value="{{$cliente->nombres}}">
+			      <input type="text" name="nombre" class="form-control mb-2" id="inlineFormInput" value="{{$empleado->nombre}}">
 			    </div>
 			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">Apellido</label>
+			      <label class="sr-only" for="inlineFormInputGroup">Salario</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="apellidos" class="form-control" id="inlineFormInputGroup" value="{{$cliente->apellidos}}">
+			        <input type="text" name="salario" class="form-control" id="inlineFormInputGroup" value="{{$empleado->salario}}">
 			      </div>
 			    </div>
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Direccion</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" value="{{$cliente->direccion}}">
+			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" value="{{$empleado->direccion}}">
 			      </div>
 			    </div>
 

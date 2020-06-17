@@ -99,7 +99,8 @@ class ClienteController extends Controller
     {
         $cliente->fill($request->all());
         $cliente->save();
-        return redirect()->index(); 
+        $clientes = Cliente::all();
+        return view('Clientes.index', compact('clientes'))->with('notificacion','Se Registro un cliente correctamente');;;
     }
 
     /**

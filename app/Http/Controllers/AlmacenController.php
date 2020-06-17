@@ -66,7 +66,8 @@ class AlmacenController extends Controller
      */
     public function edit(Almacen $almacen)
     {
-        //
+        return "hola";
+        //return view('Almacen.edit', compact('almacen'));
     }
 
     /**
@@ -78,7 +79,12 @@ class AlmacenController extends Controller
      */
     public function update(Request $request, Almacen $almacen)
     {
-        //
+        /*
+        $almacen->fill($request->all());
+        $almacen->save();
+        $almacenes = Almacen::all();
+        return view('Almacen.index', compact('almacenes'))->with('notificacion','Se Registro un cliente correctamente');;;
+        */
     }
 
     /**

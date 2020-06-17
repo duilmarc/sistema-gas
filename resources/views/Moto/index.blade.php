@@ -87,7 +87,7 @@
                         <td>{{$moto->id}}</td>
                         <td>{{$moto->color}}</td>
                                 <td><center>
-                                    <a class="btn btn-info" href="/clientes/{{$moto->id}}/edit" aria-label="show">
+                                    <a class="btn btn-info" href="/motos/{{$moto->id}}/edit" aria-label="edit">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
                                     </center>

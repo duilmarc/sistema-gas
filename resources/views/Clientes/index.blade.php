@@ -103,7 +103,7 @@
 							      <td>{{$cliente->apellidos}}</td>
 							      <td>{{$cliente->direccion}}</td>
                                 <td><center>
-                                    <a class="btn btn-info" href="/clientes/{{$cliente->telefono}}/edit" aria-label="show">
+                                    <a class="btn btn-info" href="/clientes/{{$cliente->telefono}}/edit" aria-label="edit">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
                                     </center>

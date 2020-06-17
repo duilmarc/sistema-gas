@@ -1,24 +1,20 @@
 @extends('layouts.dashboard')
 
-@section('titulo','Clientes Create');
-
 @section('content')
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-1 text-gray-800">Clientes</h1>
+    <h1 class="h3 mb-1 text-gray-800">moto</h1>
 	<p class="mb-4"></p>
 	<div class="col-lg-12">
 		<div class="card-header py-3">
-	                <h6 class="m-0 font-weight-bold text-primary">Editar Cliente</h6>
+	                <h6 class="m-0 font-weight-bold text-primary">Editar motos</h6>
 	    </div>
 		<table class="table table-dark">
 			<thead>
 				   <tr>
-				      <th scope="col-auto">Telefono</th>
-				      <th scope="col-auto">Nombres</th>
-				      <th scope="col-auto">Apellido</th>
-				      <th scope="col-auto">Direccion</th>
+				      <th scope="col-auto">Placa</th>
+				      <th scope="col-auto">Color</th>
 				   </tr>
 			</thead>
 		</table>
@@ -40,34 +36,23 @@
 		          </div>
 		        </div>
         @endif
-			<form method="POST" action="/clientes/{{$cliente->telefono}}" >
+			<form method="POST" action="/motos/{{$moto->id}}" >
 				@method('PUT')
 				@csrf
 			  <div class="form-row align-items-center">
 			  	<div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
+			      <label class="sr-only" for="inlineFormInputGroup">Placa</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" value="{{$cliente->telefono}}">
+			        <input type="text" name="id" class="form-control" id="inlineFormInputGroup" value="{{$moto->id}}">
 			      </div>
 			    </div>
 
 
 			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInput">Nombre</label>
-			      <input type="text" name="nombres" class="form-control mb-2" id="inlineFormInput" value="{{$cliente->nombres}}">
+			      <label class="sr-only" for="inlineFormInput">Color</label>
+			      <input type="text" name="color" class="form-control mb-2" id="inlineFormInput" value="{{$moto->color}}">
 			    </div>
-			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">Apellido</label>
-			      <div class="input-group mb-2">
-			        <input type="text" name="apellidos" class="form-control" id="inlineFormInputGroup" value="{{$cliente->apellidos}}">
-			      </div>
-			    </div>
-			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">Direccion</label>
-			      <div class="input-group mb-2">
-			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" value="{{$cliente->direccion}}">
-			      </div>
-			    </div>
+
 
 			    <div class="col-auto">
 			      <button type="submit" class="btn btn-primary mb-2">Editar</button>

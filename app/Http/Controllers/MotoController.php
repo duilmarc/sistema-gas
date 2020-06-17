@@ -70,7 +70,7 @@ class MotoController extends Controller
      */
     public function edit(Moto $moto)
     {
-        //
+        return view('Moto.edit', compact('moto'));
     }
 
     /**
@@ -82,7 +82,11 @@ class MotoController extends Controller
      */
     public function update(Request $request, Moto $moto)
     {
-        //
+        $moto->fill($request->all());
+        $moto->save();
+        $motos = Moto::all();
+        //return "bien";
+        return view('Moto.index', compact('motos'))->with('notificacion','Se Registro un cliente correctamente');;;
     }
 
     /**

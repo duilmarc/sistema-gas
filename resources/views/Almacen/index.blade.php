@@ -82,7 +82,7 @@
                             <th>balon lleno premiun</th>
                             <th>balon vacio normal</th>
                             <th>balon vacio premiun</th>
-                            <th>Ver mas...</th>
+                            <th>Fecha...</th>
                         </tr>
                       </thead>
                       
@@ -93,12 +93,7 @@
 							      <td>{{$alma->balon_lleno_premiun}}</td>
 							      <td>{{$alma->balon_vacio_normal}}</td>
 							      <td>{{$alma->balon_vacio_premiun}}</td>
-                                <td><center>
-                                    <a class="btn btn-info" href="/Almacen/{{$alma->almacen}}" aria-label="Settings">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
-                                    </center>
-                                </td>
+							      <td>{{$alma->created_at}}</td>
                             </tr>
                         @endforeach
                         

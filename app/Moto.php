@@ -8,6 +8,7 @@ class Moto extends Model
 {
     protected $primaryKey = 'id';
 	protected $fillable = ['id','color'];
+	
 
 	public function getRouteKeyName()
 	{

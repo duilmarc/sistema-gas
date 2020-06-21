@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Almacen;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 class AlmacenController extends Controller
 {
     /**
@@ -37,11 +38,14 @@ class AlmacenController extends Controller
     public function store(Request $request)
     {
         $almacen = new Almacen();
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
         $almacen->almacen = $request->input('almacen');
         $almacen->balon_lleno_normal = $request->input('balon_lleno_normal');
         $almacen->balon_lleno_premiun = $request->input('balon_lleno_premiun');
         $almacen->balon_vacio_normal = $request->input('balon_vacio_normal');
         $almacen->balon_vacio_premiun = $request->input('balon_vacio_premiun');
+        $almacen->fecha = $mytime;
         $almacen->save();
 
         return redirect()->back();

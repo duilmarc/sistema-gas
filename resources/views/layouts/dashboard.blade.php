@@ -85,7 +85,20 @@
           </div>
         </div>
       </li>
-
+            <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#CollapseThree" aria-expanded="true" aria-controls="CollapseThree">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Gastos</span>
+        </a>
+        <div id="CollapseThree" class="collapse" aria-labelledby="otra" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="{{ url('/gastos') }}">Registrar/Ver gastos</a>
+          </div>
+        </div>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
 

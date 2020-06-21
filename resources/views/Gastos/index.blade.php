@@ -1,68 +1,62 @@
 @extends('layouts.dashboard')
 
-@section('titulo')
-<title>Sistema- Repartidor</title>
-@endsection
+
 
 @section('content')
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
-    <!-- Page Heading -->
-  <h1 class="h3 mb-1 text-gray-800">Repartidores</h1>
-	<p class="mb-4"></p>
-	<div class="col-lg-12">
-		<div class="card-header py-3">
-	                <h6 class="m-0 font-weight-bold text-primary">Registrar Repartidor</h6>
-	    </div>
-		<table class="table table-dark">
-			<thead>
-				   <tr>
-				      <th scope="col">Telefono</th>
-				      <th scope="col">Nombres</th>
-				      <th scope="col">Salario</th>
-				      <th scope="col">Direccion</th>
-				   </tr>
-			</thead>
-		</table>
-    <form method="POST" action="/empleados">
+   <!-- Page Heading -->
+    <h1 class="h3 mb-1 text-gray-800">Gastos</h1>
+  <p class="mb-4"></p>
+  <div class="col-lg-12">
+    <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Registrar Gastos</h6>
+      </div>
+    <table class="table table-dark">
+      <thead>
+           <tr>
+              <th scope="col">Tipo Gasto</th>
+              <th scope="col">Monto</th>
+              <th scope="col">Descripcion</th>
+           </tr>
+      </thead>
+    </table>
+      <form method="POST" action="/gastos">
         @csrf
         <div class="form-row align-items-center">
+
+                    <div class="col-auto">
+                      <label class="sr-only" for="inlineFormInputGroup">Tipo Gasto</label>
+                        <div class="input-group mb-2">
+                          <select class="form-control" name="tipo_gasto" id="exampleFormControlSelect1" required>
+                            <option value="sueldo">sueldo</option>
+                            <option value="combustible">combustible</option>
+                            <option value="gas">gas</option>
+                            <option value="otro">otro</option>
+                          </select>
+                      </div>
+                    </div>
+
           <div class="col-auto">
-            <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
+            <label class="sr-only" for="inlineFormInput">Monto</label>
+            <input type="number" name="monto" class="form-control mb-2" id="inlineFormInput" placeholder="Monto" required>
+          </div>
+
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Descripcion</label>
             <div class="input-group mb-2">
-              <input type="number" name="telefono" class="form-control" id="inlineFormInputGroup" placeholder="Telefono" required>
+              <input type="text" name="descripcion" class="form-control" id="inlineFormInputGroup" placeholder="Descripcion">
             </div>
           </div>
 
-
-          <div class="col-auto">
-            <label class="sr-only" for="inlineFormInput">Nombres</label>
-            <input type="text" name="nombres" class="form-control mb-2" id="inlineFormInput" placeholder="nombres" required>
-          </div>
-          <div class="col-auto">
-            <label class="sr-only" for="inlineFormInputGroup">Salario</label>
-            <div class="input-group mb-2">
-              <input type="text" name="salario" class="form-control" id="inlineFormInputGroup" placeholder="Salario" required>
-            </div>
-          </div>
-          <div class="col-auto">
-            <label class="sr-only" for="inlineFormInputGroup">Direccion</label>
-            <div class="input-group mb-2">
-              <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" placeholder="Direccion" required>
-            </div>
-          </div>
 
           <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-2">Registrar</button>
           </div>        
         </div>
       </form>
-
-
-
-  </div>
-  @if(session('notificacion'))
+    </div>
+    @if(session('notificacion'))
         <div class="col-lg-12">
           <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -83,30 +77,32 @@
         <div class="col-lg-12">
             <div class="card shadow mb-4  border-left-primary">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Visualizar Repartidor</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Visualizar Gastos</h6>
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-sm table-bordered" bg="red" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                            <th>Telefono Contacto</th>
-                            <th>Nombres</th>
-                            <th>Direccion</th>
-                            <th>Salario</th>
+                            <th>Tipo de gasto</th>
+                            <th>Monto</th>
+                            <th>Descripcion</th>
+                            <th>Fecha</th>
+
                             <th>Editar...</th>
                         </tr>
                       </thead>
                       
                       <tbody>
-                        @foreach ($empleados as $empleado)     
-                        <td>{{$empleado->telefono}}</td>
-                        <td>{{$empleado->nombre}}</td>
-                        <td>{{$empleado->direccion}}</td>
-                        <td>{{$empleado->salario}}</td>
+                        @foreach ($gastos as $gasto)     
+                          <td>{{$gasto->tipo_gasto}}</td>
+                          <td>{{$gasto->monto}}</td>
+                          <td>{{$gasto->descripcion}}</td>
+                          <td>{{$gasto->fecha}}</td>
+
                                 <td><center>
-                                    <a class="btn btn-info" href="/empleados/{{$empleado->telefono}}/edit" aria-label="edit">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    <a class="btn btn-info" href="/gastos/{{$gasto->id}}/edit" aria-label="edit">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </a>
                                     </center>
                                 </td>
@@ -118,10 +114,7 @@
                   </div>
                 </div>
             </div>
-
-
-
-
+        </div>
 </div>
 
 

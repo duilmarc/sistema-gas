@@ -41,3 +41,6 @@ Route::resource('/motos/{placa}/edit','MotoController@edit');
 Route::resource('/clientes','ClienteController');
 Route::get('/clientes/{telefono}', 'ClienteController@show');
 Route::get('/clientes/{telefono}/edit', 'ClienteController@edit');
+
+Route::resource('/gastos','GastosController');
+Route::get('/gastos/{id}/edit', 'GastosController@edit');

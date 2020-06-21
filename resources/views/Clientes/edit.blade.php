@@ -47,7 +47,7 @@
 			  	<div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" value="{{$cliente->telefono}}">
+			        <input type="number" name="telefono" class="form-control" id="inlineFormInputGroup" value="{{$cliente->telefono}}" required>
 			      </div>
 			    </div>
 

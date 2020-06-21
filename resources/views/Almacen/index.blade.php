@@ -30,25 +30,25 @@
 			  	<div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">almacen</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="almacen" class="form-control" id="inlineFormInputGroup" placeholder="Almacen">
+			        <input type="text" name="almacen" class="form-control" id="inlineFormInputGroup" placeholder="Almacen" required>
 			      </div>
 			    </div>
 
 
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInput">balon lleno normal</label>
-			      <input type="text" name="balon_lleno_normal" class="form-control mb-2" id="inlineFormInput" placeholder="balon_lleno_normal">
+			      <input type="number" name="balon_lleno_normal" class="form-control mb-2" id="inlineFormInput" placeholder="balon_lleno_normal" required>
 			    </div>
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">balon lleno premiun</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="balon_lleno_premiun" class="form-control" id="inlineFormInputGroup" placeholder="balon_lleno_premiun">
+			        <input type="number" name="balon_lleno_premiun" class="form-control" id="inlineFormInputGroup" placeholder="balon_lleno_premiun" required>
 			      </div>
 			    </div>
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">balon vacio normal</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="balon_vacio_normal" class="form-control" id="inlineFormInputGroup" placeholder="balon_vacio_normal">
+			        <input type="number" name="balon_vacio_normal" class="form-control" id="inlineFormInputGroup" placeholder="balon_vacio_normal" required>
 			      </div>
 			    </div>
 
@@ -56,7 +56,7 @@
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">balon vacio premiun</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="balon_vacio_premiun" class="form-control" id="inlineFormInputGroup" placeholder="balon_vacio_premiun">
+			        <input type="number" name="balon_vacio_premiun" class="form-control" id="inlineFormInputGroup" placeholder="balon_vacio_premiun" required>
 			      </div>
 			    </div>
 
@@ -93,7 +93,7 @@
 							      <td>{{$alma->balon_lleno_premiun}}</td>
 							      <td>{{$alma->balon_vacio_normal}}</td>
 							      <td>{{$alma->balon_vacio_premiun}}</td>
-							      <td>{{$alma->created_at}}</td>
+							      <td>{{$alma->fecha}}</td>
                             </tr>
                         @endforeach
                         

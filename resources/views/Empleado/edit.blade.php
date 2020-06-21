@@ -1,7 +1,5 @@
 @extends('layouts.dashboard')
 
-@section('titulo','empleados Create');
-
 @section('content')
 <div class="container-fluid">
 
@@ -47,25 +45,25 @@
 			  	<div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" value="{{$empleado->telefono}}">
+			        <input type="number" name="telefono" class="form-control" id="inlineFormInputGroup" value="{{$empleado->telefono}}" required>
 			      </div>
 			    </div>
 
 
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInput">Nombre</label>
-			      <input type="text" name="nombre" class="form-control mb-2" id="inlineFormInput" value="{{$empleado->nombre}}">
+			      <input type="text" name="nombre" class="form-control mb-2" id="inlineFormInput" value="{{$empleado->nombre}}" required>
 			    </div>
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Salario</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="salario" class="form-control" id="inlineFormInputGroup" value="{{$empleado->salario}}">
+			        <input type="text" name="salario" class="form-control" id="inlineFormInputGroup" value="{{$empleado->salario}}" required>
 			      </div>
 			    </div>
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Direccion</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" value="{{$empleado->direccion}}">
+			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" value="{{$empleado->direccion}}" required>
 			      </div>
 			    </div>
 

@@ -32,7 +32,7 @@
 			  	<div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" placeholder="Telefono">
+			        <input type="number" name="telefono" class="form-control" id="inlineFormInputGroup" placeholder="Telefono" required>
 			      </div>
 			    </div>
 

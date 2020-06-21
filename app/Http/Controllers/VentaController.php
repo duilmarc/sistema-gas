@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Venta;
 use App\Cliente;
 use App\Empleado;
+use App\Almacen;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -199,4 +200,16 @@ class VentaController extends Controller
         ->get();
         return view('ventas.cancelados',compact('ventas'));
     }
+
+    public function descontar_balon_almacen()
+    {
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
+        $almacen = $DB::table('almacenes')->where('almacenes.fecha','=',$mytime)->decrement('balon_lleno_normal')->increment('balon_vacio_normal');
+
+    }
+
+
+
 }
+    

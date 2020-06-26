@@ -6,7 +6,6 @@ use App\Venta;
 use App\Cliente;
 use App\Empleado;
 use App\Almacen;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -35,7 +34,14 @@ class VentaController extends Controller
             ])
             ->select('ventas.id','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
             ->get();
-        return view('ventas.index',compact('ventas','empleados'));
+        $almacen = Almacen::where('fecha','=',$mytime)
+        ->get();
+        $almacen = json_encode($almacen);
+        $almacen = json_decode($almacen);
+        if ($almacen[0]->balon_lleno_normal <= 20 or $almacen[0]->balon_lleno_premiun <= 10)
+            return view('ventas.index',compact('ventas','empleados','almacen'))->with('alerta','Nos estamos quedando sin lata :V'); 
+        else
+            return view('ventas.index',compact('ventas','empleados','almacen'));
     }
 
     /**
@@ -93,7 +99,7 @@ class VentaController extends Controller
 
 
         }
-        return redirect()->back()->with('notificacion','Se Registro la compra correctamente');;;
+        return redirect()->back()->with('notificacion','Se Registro la compra correctamente');
     }
 
     /**
@@ -143,8 +149,28 @@ class VentaController extends Controller
     
     public function realizado(Request $requesta)
     {
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
+        
         $venta = Venta::find($requesta->id);
-        $venta->estado = 'realizado';
+        $tipo_balon = $venta->balon;
+        $venta->estado = 'realizado';  
+        $tipo_balon2 = $venta->balon;     
+       
+        $query = DB::table('almacenes')
+        ->where('fecha',$mytime);                                     
+    
+       
+        if($tipo_balon == 'normal')
+        {
+            $query->increment('balon_vacio_normal',10);
+            $query->decrement('balon_lleno_normal',10);
+        }
+        else
+        {
+            $query->increment('balon_vacio_premiun',40);
+            $query->decrement('balon_lleno_premiun',40);
+        }
         $venta->push();
         return back()->with('notificacion',' Guardado correctamente!');
 
@@ -200,16 +226,6 @@ class VentaController extends Controller
         ->get();
         return view('ventas.cancelados',compact('ventas'));
     }
-
-    public function descontar_balon_almacen()
-    {
-        $mytime = Carbon::today();
-        $mytime = $mytime->toDateString();
-        $almacen = $DB::table('almacenes')->where('almacenes.fecha','=',$mytime)->decrement('balon_lleno_normal')->increment('balon_vacio_normal');
-
-    }
-
-
 
 }
     

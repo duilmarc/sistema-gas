@@ -70,7 +70,8 @@ class GastosController extends Controller
      */
     public function edit(Gastos $gastos)
     {
-        return view('Gastos.edit', compact('gastos'));
+        //return view('Gastos.edit', compact('gastos'));
+        //return $gastos->monto;
     }
 
     /**
@@ -98,4 +99,7 @@ class GastosController extends Controller
     {
         //
     }
+
+    
+    
 }

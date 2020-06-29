@@ -88,8 +88,6 @@
                             <th>Monto</th>
                             <th>Descripcion</th>
                             <th>Fecha</th>
-
-                            <th>Editar...</th>
                         </tr>
                       </thead>
                       
@@ -99,13 +97,6 @@
                           <td>{{$gasto->monto}}</td>
                           <td>{{$gasto->descripcion}}</td>
                           <td>{{$gasto->fecha}}</td>
-
-                                <td><center>
-                                    <a class="btn btn-info" href="/gastos/{{$gasto->id}}/edit" aria-label="edit">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    </a>
-                                    </center>
-                                </td>
                             </tr>
                         @endforeach
                         

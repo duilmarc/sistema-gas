@@ -57,6 +57,7 @@ class ClienteController extends Controller
             $cliente->apellidos = $request->input('apellido');
             $cliente->nombres = $request->input('nombre');
             $cliente->direccion = $request->input('direccion');
+            $cliente->balon_prestado = $request->input('balon_prestado');
             $cliente->latitud = $request->input('latitud');
             $cliente->longitud = $request->input('longitud');
             $cliente->save();

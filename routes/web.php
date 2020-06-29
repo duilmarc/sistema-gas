@@ -23,6 +23,7 @@ Route::get('/servicios','ServicioController@index');
 
 Route::get('/ventas/canceladas','VentaController@show_cancel');
 Route::get('/ventas/realizadas','VentaController@show_accept');
+Route::get('/ventas/comision','VentaController@show_comision_por_balon');
 
 Route::get('/ventas/a/{id}', 'VentaController@realizado');
 Route::get('/ventas/c/{id}', 'VentaController@cancelado');
@@ -30,6 +31,7 @@ Route::get('/ventas/asignar/{id_venta}/{id_repartidor}', 'VentaController@asigna
 Route::resource('/ventas', 'VentaController');
 
 Route::resource('/almacen', 'AlmacenController');
+Route::get('/almacen/balones_prestados', 'AlmacenController@balones_prestados');
 
 Route::resource('/empleados','EmpleadoController');
 Route::resource('/empleados/{telefono}/edit','EmpleadoController@edit');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Almacen;
+use App\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -15,8 +16,14 @@ class AlmacenController extends Controller
      */
     public function index()
     {
+
+        $clientes = Cliente::where('balon_prestado','>=','1')->select('balon_prestado')->get();
+        $total = 0;
+        foreach ($clientes as $cliente) {
+            $total += $cliente->balon_prestado;
+        }
         $almacenes = Almacen::all();
-        return view('Almacen.index', compact('almacenes'));
+        return view('Almacen.index', compact('almacenes','total'));
     }
 
     /**
@@ -45,6 +52,7 @@ class AlmacenController extends Controller
         $almacen->balon_lleno_premiun = $request->input('balon_lleno_premiun');
         $almacen->balon_vacio_normal = $request->input('balon_vacio_normal');
         $almacen->balon_vacio_premiun = $request->input('balon_vacio_premiun');
+        $almacen->balones_prestados = $request->input('balones_prestados');
         $almacen->fecha = $mytime;
         $almacen->save();
 
@@ -101,4 +109,12 @@ class AlmacenController extends Controller
     {
         //
     }
+
+    public function balones_prestados(Almacen $almacen)
+    {
+        $clientes = Cliente::where('balones_prestados','=','si')->select('nombre')->get();
+        return $clientes;
+    }
+
+
 }

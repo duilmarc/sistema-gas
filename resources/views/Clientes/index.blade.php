@@ -22,6 +22,7 @@
 				      <th scope="col">Nombres</th>
 				      <th scope="col">Apellido</th>
 				      <th scope="col">Direccion</th>
+              <th scope="col">Balon prestado</th>
 
 				   </tr>
 			</thead>
@@ -53,6 +54,12 @@
 			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" placeholder="Direccion">
 			      </div>
 			    </div>
+            <div class="col-auto">
+              <label class="sr-only" for="inlineFormInputGroup">Balon prestado</label>
+              <div class="input-group mb-2">
+                <input type="text" name="balon_prestado" class="form-control" id="inlineFormInputGroup" placeholder="Balones prestados">
+              </div>
+          </div>
 
 			    <div class="col-auto">
 			      <button type="submit" class="btn btn-primary mb-2">Registrar</button>
@@ -92,6 +99,7 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Dirección</th>
+                            <th>Balon Prestado</th>
                             <th>Editar...</th>
                         </tr>
                       </thead>
@@ -102,6 +110,7 @@
 							      <td>{{$cliente->nombres}}</td>
 							      <td>{{$cliente->apellidos}}</td>
 							      <td>{{$cliente->direccion}}</td>
+                    <td>{{$cliente->balon_prestado}}</td>
                                 <td><center>
                                     <a class="btn btn-info" href="/clientes/{{$cliente->telefono}}/edit" aria-label="edit">
                                         <i class="fa fa-eye" aria-hidden="true"></i>

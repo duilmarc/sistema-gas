@@ -1,7 +1,5 @@
 @extends('layouts.dashboard')
 
-@section('titulo','Almacenes');
-
 @section('content')
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -21,6 +19,7 @@
                         <th scope="col">balon lleno premiun</th>
                         <th scope="col">balon vacio normal</th>
                         <th scope="col">balon vacio premiun</th>
+                        <th scope="col">balones prestados</th>
 				   </tr>
 			</thead>
 		</table>
@@ -59,6 +58,12 @@
 			        <input type="number" name="balon_vacio_premiun" class="form-control" id="inlineFormInputGroup" placeholder="balon_vacio_premiun" required>
 			      </div>
 			    </div>
+			    <div class="col-auto">
+			      <label class="sr-only" for="inlineFormInputGroup">balones prestados</label>
+			      <div class="input-group mb-2">
+			        <input type="number" name="balones_prestados" class="form-control" id="inlineFormInputGroup" value="{{$total}}">
+			      </div>
+			    </div>
 
 			    <div class="col-auto">
 			      <button type="submit" class="btn btn-primary mb-2">Registrar</button>
@@ -82,6 +87,7 @@
                             <th>balon lleno premiun</th>
                             <th>balon vacio normal</th>
                             <th>balon vacio premiun</th>
+                            <th>balones prestados</th>
                             <th>Fecha...</th>
                         </tr>
                       </thead>
@@ -93,6 +99,7 @@
 							      <td>{{$alma->balon_lleno_premiun}}</td>
 							      <td>{{$alma->balon_vacio_normal}}</td>
 							      <td>{{$alma->balon_vacio_premiun}}</td>
+							      <td>{{$alma->balones_prestados}}</td>
 							      <td>{{$alma->fecha}}</td>
                             </tr>
                         @endforeach

@@ -1,7 +1,4 @@
 @extends('layouts.dashboard')
-
-@section('titulo','Clientes Create');
-
 @section('content')
 <div class="container-fluid">
 
@@ -19,6 +16,7 @@
 				      <th scope="col-auto">Nombres</th>
 				      <th scope="col-auto">Apellido</th>
 				      <th scope="col-auto">Direccion</th>
+				      <th scope="col">Balon prestado</th>
 				   </tr>
 			</thead>
 		</table>
@@ -68,6 +66,12 @@
 			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" value="{{$cliente->direccion}}">
 			      </div>
 			    </div>
+            <div class="col-auto">
+              <label class="sr-only" for="inlineFormInputGroup">Balon prestado</label>
+              <div class="input-group mb-2">
+                <input type="text" name="balon_prestado" class="form-control" id="inlineFormInputGroup" value="{{$cliente->balon_prestado}}">
+              </div>
+          </div>
 
 			    <div class="col-auto">
 			      <button type="submit" class="btn btn-primary mb-2">Editar</button>

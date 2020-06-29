@@ -8,7 +8,7 @@ class Almacen extends Model
 {
     protected $table='almacenes';
     //protected $primaryKey = 'almacen';
-    protected $fillable = ['almacen','balon_lleno_normal','balon_lleno_premiun','balon_vacio_normal','balon_vacio_premiun'];
+    protected $fillable = ['almacen','balon_lleno_normal','balon_lleno_premiun','balon_vacio_normal','balon_vacio_premiun','balones_prestados'];
     	public function getRouteKeyName()
 	{
 	    return 'almacen';

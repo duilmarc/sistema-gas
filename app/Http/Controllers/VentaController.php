@@ -6,6 +6,7 @@ use App\Venta;
 use App\Cliente;
 use App\Empleado;
 use App\Almacen;
+use App\Gastos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -17,8 +18,13 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+
+
+        $comision = $this->show_comision_por_balon();
+
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
         $empleados = Empleado::all();
@@ -39,9 +45,9 @@ class VentaController extends Controller
         $almacen = json_encode($almacen);
         $almacen = json_decode($almacen);
         if ($almacen[0]->balon_lleno_normal <= 20 or $almacen[0]->balon_lleno_premiun <= 10)
-            return view('ventas.index',compact('ventas','empleados','almacen'))->with('alerta','Nos estamos quedando sin lata :V'); 
+            return view('ventas.index',compact('ventas','empleados','almacen','comision'))->with('alerta','Nos estamos quedando sin lata :V'); 
         else
-            return view('ventas.index',compact('ventas','empleados','almacen'));
+            return view('ventas.index',compact('ventas','empleados','almacen','comision'));
     }
 
     /**
@@ -226,6 +232,29 @@ class VentaController extends Controller
         ->get();
         return view('ventas.cancelados',compact('ventas'));
     }
+
+
+    public function show_comision_por_balon()
+    {
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
+
+        $gasto_balon = Gastos::where('fecha','=',$mytime)->where('tipo_gasto','=','gas')->select('monto')->get();
+        $gasto_balon = json_encode($gasto_balon);
+        $gasto_balon = json_decode($gasto_balon);
+
+        $almacen = Almacen::where('fecha','=',$mytime)->get();
+        $almacen = json_encode($almacen);
+        $almacen = json_decode($almacen);
+        $precioXbalon = $gasto_balon[0]->monto/ ($almacen[0]->balon_lleno_normal + $almacen[0]->balon_lleno_premiun);
+
+        $venta = Venta::where('fecha','=',$mytime)->select('precio')->get();
+        $gasto_balon = json_encode($gasto_balon);
+        $gasto_balon = json_decode($gasto_balon);
+        return ($venta[0]->precio - $precioXbalon);
+
+    }
+
 
 }
     

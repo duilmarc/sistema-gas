@@ -19,6 +19,7 @@
 				   </tr>
 			</thead>
 		</table>
+	</div>
 		@if(session('notificacion'))
 		        <div class="col-lg-12">
 		          <div class="alert alert-success alert-dismissible">
@@ -38,39 +39,35 @@
 		        </div>
         @endif
 		<form method="POST" action="/gastos/{{$gastos->id}}" >
-				@method('PUT')
-				@csrf
-		  <div class="form-row align-items-center">
-			  	      <div class="col-auto">
-                      <label class="sr-only" for="inlineFormInputGroup">Tipo Gasto</label>
-                        <div class="input-group mb-2">
-                          <select class="form-control" name="tipo_gasto" id="exampleFormControlSelect1" value="{{$gastos->tipo_gasto}}" required>
-                            <option value="sueldo">sueldo</option>
-                            <option value="combustible">combustible</option>
-                            <option value="gas">gas</option>
-                            <option value="otro">otro</option>
-                          </select>
-                      </div>
-                    </div>
-			  	<div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">Gasto</label>
-			      <div class="input-group mb-2">
-			        <input type="number" name="monto" class="form-control" id="inlineFormInputGroup" value="{{$gastos->monto}}" required>
-			      </div>
+			@method('PUT')
+			@csrf
+			<div class="form-row align-items-center">
+				<div class="col-auto">
+	                    <label class="sr-only" for="inlineFormInputGroup">Tipo Gasto</label>
+	                    <div class="input-group mb-2">
+	                          <select class="form-control" name="tipo_gasto" id="exampleFormControlSelect1" value="{{$gastos->tipo_gasto}}" required>
+	                            <option value="sueldo">sueldo</option>
+	                            <option value="combustible">combustible</option>
+	                            <option value="gas">gas</option>
+	                            <option value="otro">otro</option>
+	                          </select>
+	                    </div>
+	            </div>
+			    <div class="col-auto">
+			      <label class="sr-only" for="inlineFormInput">Nombre</label>
+			      <input type="text" name="monto" class="form-control mb-2" id="inlineFormInput" value="{{$gastos->monto}}">
 			    </div>
 
-			    <div class="col-auto">
-			      <label class="sr-only" for="inlineFormInput">Descripcion</label>
-			      <input type="text" name="descripcion" class="form-control mb-2" id="inlineFormInput" value="{{$gastos->descripcion}}">
-			    </div>
-
-
-			    <div class="col-auto">
-			      <button type="submit" class="btn btn-primary mb-2">Editar</button>
-			    </div>		    
-			  </div>
-			</form>
-		</div>
+				    <div class="col-auto">
+				      <label class="sr-only" for="inlineFormInput">Descripcion</label>
+				      <input type="text" name="descripcion" class="form-control mb-2" id="inlineFormInput" value="{{$gastos->descripcion}}">
+				    </div>
+				    <div class="col-auto">
+				      <button type="submit" class="btn btn-primary mb-2">Editar</button>
+				    </div>		    
+			</div>
+		</form>
+</div>
 
 
 @endsection

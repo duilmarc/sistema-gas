@@ -24,10 +24,17 @@ Route::get('/servicios','ServicioController@index');
 Route::get('/ventas/canceladas','VentaController@show_cancel');
 Route::get('/ventas/realizadas','VentaController@show_accept');
 Route::get('/ventas/comision','VentaController@show_comision_por_balon');
+Route::get('/ventas/ventas_realizadas/{id}','EmpleadoController@ventas');
+Route::get('/ventas/repartidores','VentaController@repartidores');
+
+Route::get('/repartidores/asistencia','EmpleadoController@asistencia');
+Route::get('/repartidores/asistencia/{id}','EmpleadoController@marcar_asistencia');
+
 
 Route::get('/ventas/a/{id}', 'VentaController@realizado');
 Route::get('/ventas/c/{id}', 'VentaController@cancelado');
 Route::get('/ventas/asignar/{id_venta}/{id_repartidor}', 'VentaController@asignar_repartidor');
+
 Route::resource('/ventas', 'VentaController');
 
 Route::resource('/almacen', 'AlmacenController');

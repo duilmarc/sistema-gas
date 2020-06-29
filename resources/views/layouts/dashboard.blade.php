@@ -61,7 +61,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-ambulance "></i>
+          <i class="fas fa-fw fa-dollar-sign "></i>
           <span>Ventas</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -72,11 +72,23 @@
           </div>
         </div>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#repartidoresdia" aria-expanded="true" aria-controls="repartidoresdia">
+          <i class="fas fa-fw fa-motorcycle "></i>
+          <span>Repartidores</span>
+        </a>
+        <div id="repartidoresdia" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">  
+            <a class="collapse-item" href="{{ url('/ventas') }}">Cartera</a>
+            <a class="collapse-item" href="{{ url('/repartidores/asistencia') }}">Asistencia</a>
+            <a class="collapse-item" href="{{ url('/ventas/repartidores') }}">Ventas</a>
+          </div>
+        </div>
+      </li>
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-fw fa-users"></i>
           <span>Clientes</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
@@ -90,7 +102,7 @@
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#CollapseThree" aria-expanded="true" aria-controls="CollapseThree">
-          <i class="fas fa-fw fa-wrench"></i>
+          <i class="fas fa-fw fa-money-bill-alt"></i>
           <span>Gastos</span>
         </a>
         <div id="CollapseThree" class="collapse" aria-labelledby="otra" data-parent="#accordionSidebar">
@@ -109,11 +121,11 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsealmacen" aria-expanded="true" aria-controls="collapsealmacen">
           <i class="fas fa-fw fa-folder"></i>
           <span>Gestionar Almacen</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsealmacen" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ url('/almacen') }}">Registrar/Ver almacen</a>
           </div>
@@ -121,11 +133,11 @@
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#CollapseMotos" aria-expanded="true" aria-controls="CollapseMotos">
           <i class="fas fa-fw fa-folder"></i>
           <span>Gestionar motos</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="CollapseMotos" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ url('/motos') }}">Registrar/Ver motos</a>
           </div>
@@ -133,11 +145,11 @@
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Repartidores" aria-expanded="true" aria-controls="Repartidores">
           <i class="fas fa-fw fa-folder"></i>
           <span>Gestionar repartidores</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="Repartidores" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ url('/empleados') }}">Registrar/Ver repartidores</a>
           </div>

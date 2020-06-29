@@ -21,10 +21,8 @@ class VentaController extends Controller
 
     public function index()
     {
-
-
-        $comision = $this->show_comision_por_balon();
-
+        // $comision = $this->show_comision_por_balon();
+        $comision = 0 ;
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
         $empleados = Empleado::all();
@@ -44,8 +42,13 @@ class VentaController extends Controller
         ->get();
         $almacen = json_encode($almacen);
         $almacen = json_decode($almacen);
+        if(sizeof($almacen)== 0)
+            return view('ventas.error');
         if ($almacen[0]->balon_lleno_normal <= 20 or $almacen[0]->balon_lleno_premiun <= 10)
-            return view('ventas.index',compact('ventas','empleados','almacen','comision'))->with('alerta','Nos estamos quedando sin lata :V'); 
+        {
+            $alerta = 'Queda pocon balones disponibles';
+            return view('ventas.index',compact('ventas','empleados','almacen','comision','alerta'));
+        }
         else
             return view('ventas.index',compact('ventas','empleados','almacen','comision'));
     }
@@ -55,6 +58,11 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function repartidores()
+    {
+        $repartidores = Empleado::all();
+        return view('ventas.repartidor',compact('repartidores'));
+    }
     public function create()
     {
         
@@ -102,8 +110,6 @@ class VentaController extends Controller
             $venta->estado = 'pendiente';
             $venta->fecha = $mytime;
             $venta->save();
-
-
         }
         return redirect()->back()->with('notificacion','Se Registro la compra correctamente');
     }
@@ -169,13 +175,13 @@ class VentaController extends Controller
        
         if($tipo_balon == 'normal')
         {
-            $query->increment('balon_vacio_normal',10);
-            $query->decrement('balon_lleno_normal',10);
+            $query->increment('balon_vacio_normal',1);
+            $query->decrement('balon_lleno_normal',1);
         }
         else
         {
-            $query->increment('balon_vacio_premiun',40);
-            $query->decrement('balon_lleno_premiun',40);
+            $query->increment('balon_vacio_premiun',1);
+            $query->decrement('balon_lleno_premiun',1);
         }
         $venta->push();
         return back()->with('notificacion',' Guardado correctamente!');

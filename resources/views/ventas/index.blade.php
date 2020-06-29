@@ -12,12 +12,11 @@
 
     <!-- Content Row -->
     <div class="row">
-      @if(session('alerta'))
+      @if($alerta)
       <div class="col-lg-12">
-        <div class="alert alert-success alert-dismissible">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h4><i class="icon fa fa-check"></i> Aviso!</h4>
-          {{session('alerta')}}
+        <div class="alert alert-warning alert-dismissible">
+          <h4><i class="icon fa fa-exclamation-triangle"></i> Aviso!</h4>
+          {{$alerta}}
         </div>
       </div>
       @endif
@@ -114,7 +113,7 @@
           </div>
         </div>
 
-        @if(session('notificacion'))
+        @if(session('notificacion')))
         <div class="col-lg-12">
           <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

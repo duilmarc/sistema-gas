@@ -20,6 +20,7 @@
 				   <tr>
 				      <th scope="col">Placa</th>
 				      <th scope="col">Color</th>
+              <th scope="col">Ultimo mantenimiento</th>
 				   </tr>
 			</thead>
 		</table>
@@ -29,7 +30,7 @@
           <div class="col-auto">
             <label class="sr-only" for="inlineFormInputGroup">Placa</label>
             <div class="input-group mb-2">
-              <input type="text" name="placa" class="form-control" id="inlineFormInputGroup" placeholder="placa">
+              <input type="text" name="placa" class="form-control" id="inlineFormInputGroup" placeholder="placa" required>
             </div>
           </div>
 
@@ -37,6 +38,10 @@
           <div class="col-auto">
             <label class="sr-only" for="inlineFormInput">Color</label>
             <input type="text" name="color" class="form-control mb-2" id="inlineFormInput" placeholder="color">
+          </div>
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput">Ultimo mantenimiento</label>
+            <input type="date" name="fecha" class="form-control mb-2" id="inlineFormInput" placeholder="color">
           </div>
           
           <div class="col-auto">
@@ -73,26 +78,28 @@
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered" bg="red" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-hover table-dark table-sm table-bordered " bg="white" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
                             <th>Placa</th>
                             <th>Color</th>
+                            <th>Ultimo mantenimiento</th>
                             <th>Editar...</th>
                         </tr>
                       </thead>
                       
                       <tbody>
                         @foreach ($motos as $moto)     
-                        <td>{{$moto->id}}</td>
+                        <td>{{$moto->placa}}</td>
                         <td>{{$moto->color}}</td>
-                                <td><center>
-                                    <a class="btn btn-info" href="/motos/{{$moto->id}}/edit" aria-label="edit">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        <td>{{$moto->fecha}}</td>
+                        <td><center>
+                                    <a class="btn btn-info" href="/motos/{{$moto->placa}}/edit" aria-label="edit">
+                                        <i class="fa fa-motorcycle" aria-hidden="true"></i>
                                     </a>
-                                    </center>
-                                </td>
-                            </tr>
+                        </center>
+                        </td>
+                        </tr>
                         @endforeach
                         
                       </tbody>
@@ -108,7 +115,6 @@
 
 
 @endsection
-
 @section('footers')
 
   <!-- Page level plugins -->
@@ -116,6 +122,6 @@
   <script src="{{ asset('css/fuentes/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
   <!-- Page level custom scripts -->
-  <script src="{{ asset('css/fuentes/demo/datatables-demo.js')}}"></script>
+  <script src="{{ asset('js/demo/datatables-demo.js')}}"></script>
 
 @endsection

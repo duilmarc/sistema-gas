@@ -15,6 +15,7 @@
 				   <tr>
 				      <th scope="col-auto">Placa</th>
 				      <th scope="col-auto">Color</th>
+				      <th scope="col-auto">Ultimo mantenimiento</th>
 				   </tr>
 			</thead>
 		</table>
@@ -36,23 +37,26 @@
 		          </div>
 		        </div>
         @endif
-			<form method="POST" action="/motos/{{$moto->id}}" >
+			<form method="POST" action="/motos/{{$moto->placa}}" >
 				@method('PUT')
 				@csrf
 			  <div class="form-row align-items-center">
 			  	<div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Placa</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="id" class="form-control" id="inlineFormInputGroup" value="{{$moto->id}}">
+			        <input type="text" name="id" class="form-control" id="inlineFormInputGroup" value="{{$moto->placa}}" required="">
 			      </div>
 			    </div>
 
 
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInput">Color</label>
-			      <input type="text" name="color" class="form-control mb-2" id="inlineFormInput" value="{{$moto->color}}">
+			      <input type="text" name="color" class="form-control mb-2" id="inlineFormInput" value="{{$moto->color}}" required>
 			    </div>
-
+			    <div class="col-auto">
+		            <label class="sr-only" for="inlineFormInput">Ultimo mantenimiento</label>
+		            <input type="date" name="fecha" class="form-control mb-2" id="inlineFormInput" value="{{$moto->fecha}}" >
+          		</div>
 
 			    <div class="col-auto">
 			      <button type="submit" class="btn btn-primary mb-2">Editar</button>

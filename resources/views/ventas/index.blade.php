@@ -47,6 +47,8 @@
                           <select class="form-control" name="balon" id="exampleFormControlSelect1">
                             <option value="normal">normal</option>
                             <option value="premium">premium</option>
+                            <option value="vacio_normal">vacio normal</option>
+                            <option value="vacio_premium">vacio premium</option>
                           </select>
                       </div>
                     </div>
@@ -103,7 +105,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-l font-weight-bold text-info text-uppercase mb-1">Gasto por balon</div>
+                      <div class="text-l font-weight-bold text-info text-uppercase mb-1">Comision promedio por balon</div>
                       <div class="h4 mb-0 font-weight-bold text-gray-800">{{$comision}}</div>
                     </div>
                   </div>

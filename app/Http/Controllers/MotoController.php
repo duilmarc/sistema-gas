@@ -36,18 +36,19 @@ class MotoController extends Controller
      */
     public function store(Request $request)
     {
-        $placa  = $request->input('id');
+        $placa  = $request->input('placa');
         $user = Moto::find($placa);
         if($user){
-            return redirect()->back()->with('notificacion_cross','Error, el numero de placa ya esta registrado');;;
+            return redirect()->back()->with('notificacion_cross','Error, el numero de placa ya esta registrado');
         }
         else{
             $moto = new Moto();
-            $moto->id = $request->input('placa');
+            $moto->placa = $request->input('placa');
             $moto->color = $request->input('color');
+            $moto->fecha = $request->input('fecha');
             $moto->save();
         }
-        return redirect()->back()->with('notificacion','Se Registro una moto correctamente');;;
+        return redirect()->back()->with('notificacion','Se Registro una moto correctamente');
         //return $request->all();
     }
 
@@ -86,7 +87,7 @@ class MotoController extends Controller
         $moto->save();
         $motos = Moto::all();
         //return "bien";
-        return view('Moto.index', compact('motos'))->with('notificacion','Se Registro un cliente correctamente');;;
+        return view('Moto.index', compact('motos'))->with('notificacion','Se Registro un cliente correctamente');
     }
 
     /**

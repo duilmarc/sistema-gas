@@ -22,7 +22,7 @@ class ClienteController extends Controller
 
     public function index()
     {
-        $clientes = Cliente::all();
+        $clientes = Cliente::all()->sortByDesc('balon_prestado');
         return view('Clientes.index', compact('clientes'));
     }
 
@@ -114,4 +114,5 @@ class ClienteController extends Controller
     {
         //
     }
+
 }

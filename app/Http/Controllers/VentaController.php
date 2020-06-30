@@ -21,8 +21,7 @@ class VentaController extends Controller
 
     public function index()
     {
-        // $comision = $this->show_comision_por_balon();
-        $comision = 0 ;
+        $comision = $this->show_comision_por_balon();
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
         $empleados = Empleado::all();
@@ -44,7 +43,7 @@ class VentaController extends Controller
         $almacen = json_decode($almacen);
         if(sizeof($almacen)== 0)
             return view('ventas.error');
-        if ($almacen[0]->balon_lleno_normal <= 20 or $almacen[0]->balon_lleno_premiun <= 10)
+        if ($almacen[0]->balon_lleno_normal <= 20 or $almacen[0]->balon_lleno_premiun <= 10 )
         {
             $alerta = 'Queda pocon balones disponibles';
             return view('ventas.index',compact('ventas','empleados','almacen','comision','alerta'));
@@ -173,14 +172,22 @@ class VentaController extends Controller
         ->where('fecha',$mytime);                                     
     
        
-        if($tipo_balon == 'normal')
+        if($tipo_balon == 'normal')// venta balon normal
         {
             $query->increment('balon_vacio_normal',1);
             $query->decrement('balon_lleno_normal',1);
         }
+        else if($tipo_balon == 'vacio_normal') //venta balon vacio normal
+        {
+            $query->decrement('balon_vacio_normal',1);
+        }
+        else if($tipo_balon == 'vacio_premium') //venta balon vacio premium
+        {
+            $query->decrement('balon_vacio_premiun',1);
+        }
         else
         {
-            $query->increment('balon_vacio_premiun',1);
+            $query->increment('balon_vacio_premiun',1);//venta balon premium
             $query->decrement('balon_lleno_premiun',1);
         }
         $venta->push();
@@ -246,18 +253,27 @@ class VentaController extends Controller
         $mytime = $mytime->toDateString();
 
         $gasto_balon = Gastos::where('fecha','=',$mytime)->where('tipo_gasto','=','gas')->select('monto')->get();
-        $gasto_balon = json_encode($gasto_balon);
-        $gasto_balon = json_decode($gasto_balon);
-
         $almacen = Almacen::where('fecha','=',$mytime)->get();
-        $almacen = json_encode($almacen);
-        $almacen = json_decode($almacen);
-        $precioXbalon = $gasto_balon[0]->monto/ ($almacen[0]->balon_lleno_normal + $almacen[0]->balon_lleno_premiun);
-
         $venta = Venta::where('fecha','=',$mytime)->select('precio')->get();
-        $gasto_balon = json_encode($gasto_balon);
-        $gasto_balon = json_decode($gasto_balon);
-        return ($venta[0]->precio - $precioXbalon);
+
+        /////////////////////////////////////////////////////////////
+        ///Control de error si no hay almacen o gastos registrados///
+        /////////////////////////////////////////////////////////////
+
+        if($gasto_balon && $almacen && $venta){
+            $gasto_balon = json_encode($gasto_balon);
+            $gasto_balon = json_decode($gasto_balon);
+
+            $almacen = json_encode($almacen);
+            $almacen = json_decode($almacen);
+            $precioXbalon = $gasto_balon[0]->monto/ ($almacen[0]->balon_lleno_normal + $almacen[0]->balon_lleno_premiun);
+
+
+            $gasto_balon = json_encode($gasto_balon);
+            $gasto_balon = json_decode($gasto_balon);
+            return ($venta[0]->precio - $precioXbalon);
+        }
+        return 0;
 
     }
 

@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Moto extends Model
 {
     protected $primaryKey = 'id';
-	protected $fillable = ['id','color'];
+	protected $fillable = ['placa','color','fecha'];
 	
 
 	public function getRouteKeyName()
 	{
-	    return 'id';
+	    return 'placa';
+	}
+		public function searchID($id)
+	{
+		return true;
 	}
 
 }

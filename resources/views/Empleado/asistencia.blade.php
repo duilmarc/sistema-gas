@@ -5,6 +5,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+      @if(session('notificacion')))
+      <div class="col-lg-12">
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Notificacion!</h4>
+          {{session('notificacion')}}
+        </div>
+      </div>
+      @endif
       <div class="col-lg-8 col-md-8 col-sm-12">
             <div class="card">
                 <div class="card-header text-dark">

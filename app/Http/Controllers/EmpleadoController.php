@@ -82,9 +82,31 @@ class EmpleadoController extends Controller
             return view('ventas.error')->with('notificacion','El repartidor no ha realizado ninguna venta el dia de hoy');
         }
     }
+    public function generar_asistencia()
+    {
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
 
+        $repartidores = Empleado::all();
+        $asistencia = DB::table('asistencia')->where('fecha','=',$mytime)->get();
+        if(sizeof($asistencia)>0)
+            return 1;
+        else
+        {
+            foreach ($repartidores as $repartidor) {
+                DB::table('cartera')->insert([
+                        "id" => $repartidor->id,
+                        "fecha" => $mytime,
+                        "monto" => 0
+                ]);
+            }
+            return 0;
+        }
+        
+    }
     public function asistencia()
     {
+        $valor = $this->generar_asistencia();
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
         $asistencias = DB::table('asistencia')
@@ -92,7 +114,12 @@ class EmpleadoController extends Controller
             ->select('asistencia.*', 'empleados.nombre')
             ->where('asistencia.fecha','=',$mytime)
             ->get();
-        $repartidores = Empleado::all();
+        $repartidores = DB::table('asistencia')
+        ->join('empleados', 'empleados.id', '=', 'asistencia.id')
+        ->select('asistencia.*', 'empleados.nombre')
+        ->where('asistencia.fecha','=',$mytime)
+        ->where('asistencia.condicion','=','no registrada')
+        ->get();
       
         return view('Empleado.asistencia',compact('repartidores','asistencias'));
     }
@@ -101,7 +128,9 @@ class EmpleadoController extends Controller
     {
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
-        DB::insert('insert into asistencia (id, fecha,condicion) values (?, ?, ?)', [$id, $mytime,'asistio']);
+        DB::table('asistencia')
+              ->where('id', $id)->where('fecha',$mytime)
+              ->update(['condicion' => 'asistio']);
         return redirect()->back()->with('notificacion','Se Registro la asistencia correctamente');
     }
 
@@ -117,10 +146,10 @@ class EmpleadoController extends Controller
         else
         {
             foreach ($repartidores as $repartidor) {
-                DB::table('cartera')->insert([
+                DB::table('asistencia')->insert([
                         "id" => $repartidor->id,
                         "fecha" => $mytime,
-                        "monto" => 0
+                        "condicion" => 'no registrada'
                 ]);
             }
             return 0;

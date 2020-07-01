@@ -35,7 +35,7 @@ class VentaController extends Controller
                 ['ventas.estado', '=', 'asignado'],
                 ['ventas.fecha','=',$mytime]
             ])
-            ->select('ventas.id','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
+            ->select('ventas.id','ventas.total','ventas.cantidad','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
             ->get();
         $almacen = Almacen::where('fecha','=',$mytime)
         ->get();
@@ -81,37 +81,27 @@ class VentaController extends Controller
         $mytime = $mytime->toDateString();
         $telefono  = $request->input('telefono');
         $user = Cliente::find($telefono);
-        if($user){
-            $venta = new Venta();
-            $venta->telefono = $telefono;
-            $venta->direccion = $request->direccion;
-            $venta->balon = $request->balon;
-            $venta->precio = $request->precio;
-            if($request->referencia){
-                $venta->referencia = $request->referencia;
-            }
-            $venta->estado = 'pendiente';
-            $venta->fecha = $mytime;
-            $venta->save();
-        }
-        else
-        {
+        if( $user  == null){
             $cliente = new Cliente();
             $cliente->telefono = $request->input('telefono');
             $cliente->direccion = $request->input('direccion');
             $cliente->save();
-            $venta = new Venta();
-            $venta->telefono = $telefono;
-            $venta->direccion = $request->direccion;
-            $venta->balon = $request->balon;
-            $venta->precio = $request->precio;
-            if($request->referencia){
-                $venta->referencia = $request->referencia;
-            }
-            $venta->estado = 'pendiente';
-            $venta->fecha = $mytime;
-            $venta->save();
         }
+        $venta = new Venta();
+        $venta->telefono = $telefono;
+        $venta->direccion = $request->direccion;
+        $venta->balon = $request->balon;
+        $venta->precio = $request->input('precio');
+        
+        if($request->referencia){
+            $venta->referencia = $request->referencia;
+        }
+        $venta->cantidad = $request->input('cantidad');
+        $venta->total = $venta->cantidad * $venta->precio;
+        $venta->estado = 'pendiente';
+        $venta->fecha = $mytime;
+        $venta->save();
+
         return redirect()->back()->with('notificacion','Se Registro la compra correctamente');
     }
 
@@ -175,25 +165,31 @@ class VentaController extends Controller
       
         if($tipo_balon == 'normal')// venta balon normal
         {
-            $query->increment('balon_vacio_normal',1);
-            $query->decrement('balon_lleno_normal',1);
+            $query->increment('balon_vacio_normal',$venta->cantidad);
+            $query->decrement('balon_lleno_normal',$venta->cantidad);
         }
         else if($tipo_balon == 'vacio_normal') //venta balon vacio normal
         {
-            $query->decrement('balon_vacio_normal',1);
+            $query->decrement('balon_vacio_normal',$venta->cantidad);
         }
         else if($tipo_balon == 'vacio_premium') //venta balon vacio premium
         {
-            $query->decrement('balon_vacio_premiun',1);
+            $query->decrement('balon_vacio_premiun',$venta->cantidad);
         }
         else
         {
-            $query->increment('balon_vacio_premiun',1);//venta balon premium
-            $query->decrement('balon_lleno_premiun',1);
+            $query->increment('balon_vacio_premiun',$venta->cantidad);//venta balon premium
+            $query->decrement('balon_lleno_premiun',$venta->cantidad);
         }
         $venta->push();
         $query = DB::table('cartera')->where('fecha','=',$mytime)->where('id','=',$venta->repartidor);
-        $query->increment('monto',$venta->precio);
+        if(sizeof($query->get())==0)
+        {
+            DB::insert('insert into cartera (id, fecha,monto) values (?, ?, ?)', [$venta->repartidor, $mytime,$venta->total]);
+        }
+        else{
+            $query->increment('monto',$venta->total);
+        }
         return back()->with('notificacion',' Guardado correctamente!');
 
     }
@@ -222,14 +218,13 @@ class VentaController extends Controller
         $total = DB::table("ventas")->where('ventas.fecha','=',$mytime)
         ->where([
             ['ventas.estado', '=', 'realizado'],
-        ])->get()->sum("precio");
+        ])->get()->sum("total");
         $ventas= DB::table('ventas')
             ->leftJoin('empleados', 'empleados.id', '=', 'ventas.repartidor')   
             ->where('ventas.fecha','=',$mytime)
             ->where([
                 ['ventas.estado', '=', 'realizado'],
             ])
-            ->select('ventas.id','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
             ->get();
         return view('ventas.realizadas',compact('ventas','total'));
     }
@@ -244,7 +239,6 @@ class VentaController extends Controller
         ->where([
             ['ventas.estado', '=', 'cancelado'],
         ])
-        ->select('ventas.id','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
         ->get();
         return view('ventas.cancelados',compact('ventas'));
     }

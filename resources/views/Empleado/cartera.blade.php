@@ -5,6 +5,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+      @if(session('notificacion')))
+      <div class="col-lg-12">
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Notificacion!</h4>
+          {{session('notificacion')}}
+        </div>
+      </div>
+      @endif
       <div class="col-lg-4 col-md-4 col-sm-12">
             <div class="card  border-left-danger border-bottom-danger">
                 <div class="card-header text-dark">
@@ -77,7 +86,7 @@
                                 </td>
                                
                                 <td> <center>
-                                    <input type="number" name="monto" class="form-control" id="inlineFormInputGroup" placeholder="monto">
+                                    <input type="number" name="monto" class="form-control" id="inlineFormInputGroup" placeholder="monto" required>
                                 </center>
                                 </td>
                                 <td>  <input type="text" name="descripcion" class="form-control" id="inlineFormInputGroup" placeholder="descripcion"> </td>

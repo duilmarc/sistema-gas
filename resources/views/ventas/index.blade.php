@@ -33,13 +33,13 @@
                       <div class="col-auto col-sm-4">
                       <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
                       <div class="input-group mb-2">
-                        <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" placeholder="Telefono">
+                        <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" placeholder="Telefono" required>
                       </div>
                     </div>
             
                     <div class="col-8 col-sm-6">
                       <label class="sr-only" for="inlineFormInput">Direccion</label>
-                      <input type="text" name="direccion" class="form-control mb-2" id="inlineFormInput" placeholder="Dirección">
+                      <input type="text" name="direccion" class="form-control mb-2" id="inlineFormInput" placeholder="Dirección" required>
                     </div>
                     <div class="col-auto">
                       <label class="sr-only" for="inlineFormInputGroup">Tipo balon</label>
@@ -55,10 +55,15 @@
                     <div class="col-4">
                       <label class="sr-only" for="inlineFormInputGroup">precio</label>
                       <div class="input-group mb-2">
-                        <input type="number" name="precio" class="form-control" id="inlineFormInputGroup" placeholder="Precio">
+                        <input type="number" name="precio" class="form-control" id="inlineFormInputGroup" placeholder="Precio" required>
                       </div>
                     </div>
-            
+                    <div class="col-4">
+                      <label class="sr-only" for="inlineFormInputGroup">cantidad</label>
+                      <div class="input-group mb-2">
+                        <input type="number" name="cantidad" min="1" step="1" class="form-control" id="inlineFormInputGroup" placeholder="Cantidad Balones" required>
+                      </div>
+                    </div>
                     <div class="col-12">
                       <label class="sr-only" for="inlineFormInputGroup">Referencia</label>
                       <div class="input-group mb-2">
@@ -76,37 +81,17 @@
         </div>
         <div class="col-lg-4">
           <div class="row">
-            <div class="col-xl-6 col-md-6 mb-6">
+            <div class="col-xl-12 col-md-12 mb-12">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-l font-weight-bold text-info text-uppercase mb-1">Balones Normales Restantes</div>
-                      <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_normal }}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-6 col-md-6 mb-6">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
+                      <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_normal }} balones</div>
                       <div class="text-l font-weight-bold text-info text-uppercase mb-1">Balones Premium Restantes</div>
-                      <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_premiun }}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-              <div class="col-xl-6 col-md-6 mb-6">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
+                      <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_premiun }} balones</div>
                       <div class="text-l font-weight-bold text-info text-uppercase mb-1">Comision promedio por balon</div>
-                      <div class="h4 mb-0 font-weight-bold text-gray-800">{{$comision}}</div>
+                      <div class="h4 mb-0 font-weight-bold text-gray-800">S/.{{$comision}}</div>
                     </div>
                   </div>
                 </div>
@@ -131,18 +116,21 @@
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-dark table-sm table-bordered " bg="white" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-hover table-sm table-bordered " bg="white" id="dataTable" width="100%" cellspacing="0">
                       <thead >
                         <tr>
                             <th>Telefono</th>
                             <th>Direccion</th>
                             <th>Balon</th>
                             <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
                             <th>Referencia</th>
                             <th>Repartidor</th>
                             <th>Realizado</th>
                             <th>Cancelado</th>
                             <th>Estado</th>
+                            <th>Enviar</th>
                         </tr>
                       </thead>
                       
@@ -153,6 +141,8 @@
                                 <td> {{ $venta->direccion  }} </td>
                                 <td> {{ $venta->balon  }} </td>
                                 <td> {{ $venta->precio  }} </td>
+                                <td> {{ $venta->cantidad }}</td>
+                                <td> {{ $venta->total }}</td>
                                 <td> {{ $venta->referencia  }} </td>
                                 @if ($venta->nombre)
                                 <td>
@@ -199,6 +189,21 @@
                                 </td>
                                 
                                 <td>{{ $venta->estado }}</td>
+                                <td><center>
+                                  @if((new \Jenssegers\Agent\Agent())->isDesktop())
+                                  <a href="https://web.whatsapp.com/send?phone=51923825605&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0A--------------------------" target="_blank">
+                                    <i class="fab fa-whatsapp"  style='font-size:30px;color:green' aria-hidden="true"></i>
+                                  </a>
+                                  @endif
+                                  @if((new \Jenssegers\Agent\Agent())->isMobile())
+                                  <a href="https://api.whatsapp.com/send?phone=51923825605&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0A--------------------------"  target="_blank">
+                                    <button style='font-size:24px'><i class="fab fa-whatsapp"  style='font-size:30px;color:green' aria-hidden="true"></i>
+                                    </button>
+                                  </a>
+                                  @endif
+                                </center>
+                                 
+                                </td>
                             </tr>
                         @endforeach
                         

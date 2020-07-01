@@ -27,6 +27,8 @@
                             <th>Direccion</th>
                             <th>Balon</th>
                             <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
                             <th>Referencia</th>
                             <th>Repartidor</th>
                         </tr>
@@ -39,10 +41,11 @@
                                 <td> {{ $venta->direccion  }} </td>
                                 <td> {{ $venta->balon  }} </td>
                                 <td> {{ $venta->precio  }} </td>
+                                <td> {{ $venta->cantidad  }} </td>
+                                <td> {{ $venta->total  }} </td>
                                 <td> {{ $venta->referencia  }} </td>
-                                <td> {{ $venta->nombre }}</td> 
-                                
-                            </tr>
+                                <td> {{ $venta->nombre  }}</td>
+                        </tr>
                         @endforeach
                         
                       </tbody>

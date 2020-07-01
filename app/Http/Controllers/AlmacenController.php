@@ -22,7 +22,7 @@ class AlmacenController extends Controller
         foreach ($clientes as $cliente) {
             $total += $cliente->balon_prestado;
         }
-        $almacenes = Almacen::all();
+        $almacenes = Almacen::all()->sortByDesc('fecha');
         return view('Almacen.index', compact('almacenes','total'));
     }
 
@@ -44,19 +44,25 @@ class AlmacenController extends Controller
      */
     public function store(Request $request)
     {
-        $almacen = new Almacen();
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
-        $almacen->almacen = $request->input('almacen');
-        $almacen->balon_lleno_normal = $request->input('balon_lleno_normal');
-        $almacen->balon_lleno_premiun = $request->input('balon_lleno_premiun');
-        $almacen->balon_vacio_normal = $request->input('balon_vacio_normal');
-        $almacen->balon_vacio_premiun = $request->input('balon_vacio_premiun');
-        $almacen->balones_prestados = $request->input('balones_prestados');
-        $almacen->fecha = $mytime;
-        $almacen->save();
-
-        return redirect()->back();
+        $almacenes = Almacen::find($request->input('almacen'));
+        if($almacenes == null){ //Si no hay almacenes creados
+            $almacen = new Almacen();
+            $almacen->almacen = $request->input('almacen');
+            $almacen->balon_lleno_normal = $request->input('balon_lleno_normal');
+            $almacen->balon_lleno_premiun = $request->input('balon_lleno_premiun');
+            $almacen->balon_vacio_normal = $request->input('balon_vacio_normal');
+            $almacen->balon_vacio_premiun = $request->input('balon_vacio_premiun');
+            $almacen->balones_prestados = $request->input('balones_prestados');
+            $almacen->fecha = $mytime;
+            $almacen->save();
+        }
+        else
+        {
+            $this->update($request, $almacenes);
+        }
+        return redirect()->back()->with('notificacion','Se Registro el almacen correctamente');
     }
 
     /**
@@ -91,12 +97,14 @@ class AlmacenController extends Controller
      */
     public function update(Request $request, Almacen $almacen)
     {
-        /*
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
         $almacen->fill($request->all());
+        $almacen->fecha = $mytime;
         $almacen->save();
         $almacenes = Almacen::all();
         return view('Almacen.index', compact('almacenes'))->with('notificacion','Se Registro un cliente correctamente');;;
-        */
+        
     }
 
     /**

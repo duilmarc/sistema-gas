@@ -16,7 +16,7 @@ class GastosController extends Controller
      */
     public function index()
     {
-        $gastos = Gastos::all();
+        $gastos = Gastos::all()->sortByDesc('fecha');
         return view('Gastos.index', compact('gastos'));
     }
 

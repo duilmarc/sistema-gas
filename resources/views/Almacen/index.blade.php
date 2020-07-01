@@ -29,25 +29,26 @@
 			  	<div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">almacen</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="almacen" class="form-control" id="inlineFormInputGroup" placeholder="Almacen" required>
+			        <input type="number" name="almacen" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->almacen}}"placeholder="Almacen" required>
 			      </div>
 			    </div>
 
 
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInput">balon lleno normal</label>
-			      <input type="number" name="balon_lleno_normal" class="form-control mb-2" id="inlineFormInput" placeholder="balon_lleno_normal" required>
+			      <input type="number" name="balon_lleno_normal" class="form-control mb-2" id="inlineFormInput" value="{{$almacenes[0]->balon_lleno_normal}}" placeholder="balon_lleno_normal" required>
 			    </div>
+
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">balon lleno premiun</label>
 			      <div class="input-group mb-2">
-			        <input type="number" name="balon_lleno_premiun" class="form-control" id="inlineFormInputGroup" placeholder="balon_lleno_premiun" required>
+			        <input type="number" name="balon_lleno_premiun" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->balon_lleno_premiun}}" placeholder="balon_lleno_premiun" required>
 			      </div>
 			    </div>
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">balon vacio normal</label>
 			      <div class="input-group mb-2">
-			        <input type="number" name="balon_vacio_normal" class="form-control" id="inlineFormInputGroup" placeholder="balon_vacio_normal" required>
+			        <input type="number" name="balon_vacio_normal" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->balon_vacio_normal}}" placeholder="balon_vacio_normal" required>
 			      </div>
 			    </div>
 
@@ -55,7 +56,7 @@
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">balon vacio premiun</label>
 			      <div class="input-group mb-2">
-			        <input type="number" name="balon_vacio_premiun" class="form-control" id="inlineFormInputGroup" placeholder="balon_vacio_premiun" required>
+			        <input type="number" name="balon_vacio_premiun" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->balon_vacio_premiun}}"placeholder="balon_vacio_premiun" required>
 			      </div>
 			    </div>
 			    <div class="col-auto">
@@ -79,7 +80,7 @@
                 </div>
                 <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-dark table-sm table-bordered " bg="white" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-hover table-dark table-sm table-bordered " bg="white" id="sorteable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
                             <th>Almacen</th>

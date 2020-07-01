@@ -268,7 +268,7 @@ class VentaController extends Controller
 
             $gasto_balon = json_encode($gasto_balon);
             $gasto_balon = json_decode($gasto_balon);
-            return ($venta[0]->precio - $precioXbalon);
+            return round(($venta[0]->precio - $precioXbalon),2);
         }
         return 0;
 

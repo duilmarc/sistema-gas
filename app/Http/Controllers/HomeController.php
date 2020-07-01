@@ -31,7 +31,7 @@ class HomeController extends Controller
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
         $almacen = Almacen::where('fecha','=',$mytime)
-        ->get();
+        ->first();
         $total_dia = DB::table("ventas")->where('ventas.fecha','=',$mytime)
         ->where([
             ['ventas.estado', '=', 'realizado'],
@@ -45,8 +45,7 @@ class HomeController extends Controller
         ->orWhere([
             ['ventas.estado', '=', 'asignado'],
             ['ventas.fecha','=',$mytime]
-        ])
-        ->count();
+        ])->count();
         $total_repartidores = Empleado::count();
         return view('home',compact('total_dia','total_repartidores','faltantes','almacen'));
     }

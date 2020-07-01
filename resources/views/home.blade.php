@@ -69,7 +69,11 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Balones Premium</div>
                             <div class="row no-gutters align-items-center">
                               <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_premiun }}</div>
+                                @if($almacen === null)
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">No se registro el día de hoy</div>
+                                @else
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $almacen->balon_lleno_premiun }}</div>
+                                @endif
                               </div>
                             </div>
                           </div>
@@ -88,7 +92,11 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Balones Premium Vacios</div>
                             <div class="row no-gutters align-items-center">
                               <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $almacen[0]->balon_vacio_premiun }}</div>
+                                @if($almacen === null)
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">No se registro el día de hoy</div>
+                                @else
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $almacen->balon_vacio_premiun }}</div>
+                                @endif
                               </div>
                             </div>
                           </div>
@@ -107,7 +115,11 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Balones Normales</div>
                             <div class="row no-gutters align-items-center">
                               <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_normal }}</div>
+                                @if($almacen === null)
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">No se registro el día de hoy</div>
+                                @else
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $almacen->balon_lleno_normal }}</div>
+                                @endif
                               </div>
                             </div>
                           </div>
@@ -126,7 +138,11 @@
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Balones Normales Vacios</div>
                             <div class="row no-gutters align-items-center">
                               <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $almacen[0]->balon_vacio_normal }}</div>
+                                @if($almacen === null)
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">No se registro el día de hoy</div>
+                                @else
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $almacen->balon_vacio_normal }}</div>
+                                @endif
                               </div>
                             </div>
                           </div>

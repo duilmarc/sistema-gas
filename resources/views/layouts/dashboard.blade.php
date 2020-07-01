@@ -79,7 +79,7 @@
         </a>
         <div id="repartidoresdia" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">  
-            <a class="collapse-item" href="{{ url('/ventas') }}">Cartera</a>
+            <a class="collapse-item" href="{{ url('/repartidores/cartera') }}">Cartera</a>
             <a class="collapse-item" href="{{ url('/repartidores/asistencia') }}">Asistencia</a>
             <a class="collapse-item" href="{{ url('/ventas/repartidores') }}">Ventas</a>
           </div>

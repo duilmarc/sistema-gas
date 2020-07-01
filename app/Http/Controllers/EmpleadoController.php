@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Venta;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Input;
 class EmpleadoController extends Controller
 {
     /**
@@ -103,6 +104,78 @@ class EmpleadoController extends Controller
         DB::insert('insert into asistencia (id, fecha,condicion) values (?, ?, ?)', [$id, $mytime,'asistio']);
         return redirect()->back()->with('notificacion','Se Registro la asistencia correctamente');
     }
+
+    public function generar_cartera()
+    {
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
+
+        $repartidores = Empleado::all();
+        $carteras = DB::table('cartera')->where('fecha','=',$mytime)->get();
+        if(sizeof($carteras)>0)
+            return 1;
+        else
+        {
+            foreach ($repartidores as $repartidor) {
+                DB::table('cartera')->insert([
+                        "id" => $repartidor->id,
+                        "fecha" => $mytime,
+                        "monto" => 0
+                ]);
+            }
+            return 0;
+        }
+        
+    }
+    public function cartera()
+    {
+        $valor = $this->generar_cartera();
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
+        $carteras = DB::table('cartera')
+            ->join('empleados', 'empleados.id', '=', 'cartera.id')
+            ->select('cartera.*', 'empleados.nombre')
+            ->where('cartera.fecha','=',$mytime)
+            ->get();
+         $descripciones = DB::table('descripcion_cartera')
+            ->join('empleados', 'empleados.id', '=', 'descripcion_cartera.id')
+            ->select('descripcion_cartera.*', 'empleados.nombre')
+            ->where('descripcion_cartera.fecha','=',$mytime)
+            ->get();
+        $repartidores = Empleado::all();
+      
+        return view('Empleado.cartera',compact('repartidores','carteras','descripciones'));
+    }
+
+    public function descripcion_cartera()
+    {
+        $fecha = Carbon::today();
+        $fecha = $fecha->toDateString();
+        $monto =  Input::get('monto',false);
+        $id =  Input::get('id',false);
+        $descripcion =  Input::get('descripcion',false);
+       
+        $query = DB::table('cartera')->where('fecha','=',$fecha)->where('id','=',$id);
+
+        if(sizeof($query->get())==0)
+        {
+            DB::insert('insert into cartera (id, fecha,monto) values (?, ?, ?)', [$id, $fecha,$monto]);
+        }
+        else{
+            $query->increment('monto',$monto);
+        }
+        DB::insert('insert into descripcion_cartera (id, monto,motivo,fecha) values (?, ?, ?,?)', [$id, $monto,$descripcion,$fecha]);
+        return redirect()->back()->with('notificacion','Se Registro el monto correctamente');    
+    }
+    
+    public function registrar_monto($id)
+    {
+        $mytime = Carbon::today();
+        $mytime = $mytime->toDateString();
+        DB::insert('insert into asistencia (id, fecha,condicion) values (?, ?, ?)', [$id, $mytime,'asistio']);
+        return redirect()->back()->with('notificacion','Se Registro la asistencia correctamente');
+    }
+
     public function show(Empleado $empleado)
     {
         //

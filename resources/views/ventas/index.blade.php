@@ -70,7 +70,7 @@
                       <button type="submit" class="btn btn-primary mb-2">Registrar</button>
                     </div>
                   </div>
-                </form>
+                
             </div>
         </div>
         </div>
@@ -190,7 +190,7 @@
                                     <button type="submit" class="btn disabled btn-success mb-2">Entregado</button>
                                     </center>
                                   </td>
-                                </form>
+                                
                                 @endif
                                 <td>
                                   <a class="btn btn-danger" href="{{ url('/ventas/c/'.$venta->id) }}" aria-label="Settings">

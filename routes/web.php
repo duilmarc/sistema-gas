@@ -35,6 +35,10 @@ Route::get('/ventas/a/{id}', 'VentaController@realizado');
 Route::get('/ventas/c/{id}', 'VentaController@cancelado');
 Route::get('/ventas/asignar/{id_venta}/{id_repartidor}', 'VentaController@asignar_repartidor');
 
+Route::get('/ventas/cartera', ['as' => '/ventas/cartera', 'uses' => 'EmpleadoController@descripcion_cartera']);
+
+Route::get('/repartidores/cartera', 'EmpleadoController@cartera');
+
 Route::resource('/ventas', 'VentaController');
 
 Route::resource('/almacen', 'AlmacenController');

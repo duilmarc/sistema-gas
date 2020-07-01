@@ -42,14 +42,15 @@ class VentaController extends Controller
         $almacen = json_encode($almacen);
         $almacen = json_decode($almacen);
         if(sizeof($almacen)== 0)
-            return view('ventas.error');
+            return view('ventas.error')->with('notificacion','Debes registrar primero la cantidad de balones en tu almacen');
         if ($almacen[0]->balon_lleno_normal <= 20 or $almacen[0]->balon_lleno_premiun <= 10 )
         {
             $alerta = 'Queda pocon balones disponibles';
             return view('ventas.index',compact('ventas','empleados','almacen','comision','alerta'));
         }
         else
-            return view('ventas.index',compact('ventas','empleados','almacen','comision'));
+            $alerta  = "";
+            return view('ventas.index',compact('ventas','empleados','almacen','comision','alerta'));
     }
 
     /**
@@ -62,6 +63,7 @@ class VentaController extends Controller
         $repartidores = Empleado::all();
         return view('ventas.repartidor',compact('repartidores'));
     }
+    
     public function create()
     {
         
@@ -166,12 +168,11 @@ class VentaController extends Controller
         $venta = Venta::find($requesta->id);
         $tipo_balon = $venta->balon;
         $venta->estado = 'realizado';  
-        $tipo_balon2 = $venta->balon;     
+     
        
         $query = DB::table('almacenes')
-        ->where('fecha',$mytime);                                     
-    
-       
+        ->where('fecha','=',$mytime);                                     
+      
         if($tipo_balon == 'normal')// venta balon normal
         {
             $query->increment('balon_vacio_normal',1);
@@ -191,6 +192,8 @@ class VentaController extends Controller
             $query->decrement('balon_lleno_premiun',1);
         }
         $venta->push();
+        $query = DB::table('cartera')->where('fecha','=',$mytime)->where('id','=',$venta->repartidor);
+        $query->increment('monto',$venta->precio);
         return back()->with('notificacion',' Guardado correctamente!');
 
     }
@@ -259,8 +262,8 @@ class VentaController extends Controller
         /////////////////////////////////////////////////////////////
         ///Control de error si no hay almacen o gastos registrados///
         /////////////////////////////////////////////////////////////
-
-        if($gasto_balon && $almacen && $venta){
+   
+        if(sizeof($gasto_balon)>0 && sizeof($almacen)>0 && sizeof($venta)>0){
             $gasto_balon = json_encode($gasto_balon);
             $gasto_balon = json_decode($gasto_balon);
 

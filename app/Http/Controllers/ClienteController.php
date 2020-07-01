@@ -19,7 +19,10 @@ class ClienteController extends Controller
         $this->middleware('auth');
     }*/
 
-
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $clientes = Cliente::all()->sortByDesc('balon_prestado');

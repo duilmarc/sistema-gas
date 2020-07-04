@@ -65,12 +65,17 @@
                       </div>
                     </div>
                     <div class="col-12">
+                      <label class="sr-only" for="inlineFormInputGroup">Google Maps</label>
+                      <div class="input-group mb-2">
+                        <input type="text" name="maps" class="form-control" id="inlineFormInputGroup" placeholder="Google Maps">
+                      </div>
+                    </div>
+                    <div class="col-12">
                       <label class="sr-only" for="inlineFormInputGroup">Referencia</label>
                       <div class="input-group mb-2">
                         <input type="text" name="referencia" class="form-control" id="inlineFormInputGroup" placeholder="Referencia">
                       </div>
                     </div>
-            
                     <div class="col-12">
                       <button type="submit" class="btn btn-primary mb-2">Registrar</button>
                     </div>
@@ -191,12 +196,12 @@
                                 <td>{{ $venta->estado }}</td>
                                 <td><center>
                                   @if((new \Jenssegers\Agent\Agent())->isDesktop())
-                                  <a href="https://web.whatsapp.com/send?phone=51923825605&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0A--------------------------" target="_blank">
+                                  <a href="https://web.whatsapp.com/send?phone=51923825605&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:S/{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0ATipo Balón:{{ $venta->balon  }}%0AUbicación Google Maps:{{ $venta->maps  }}%0A--------------------------" target="_blank">
                                     <i class="fab fa-whatsapp"  style='font-size:30px;color:green' aria-hidden="true"></i>
                                   </a>
                                   @endif
                                   @if((new \Jenssegers\Agent\Agent())->isMobile())
-                                  <a href="https://api.whatsapp.com/send?phone=51923825605&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0A--------------------------"  target="_blank">
+                                  <a href="https://api.whatsapp.com/send?phone=51923825605&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:S/{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0ATipo Balón:{{ $venta->balon  }}%0AUbicación Google Maps:{{ $venta->maps  }}%0A---------------------------"  target="_blank">
                                     <button style='font-size:24px'><i class="fab fa-whatsapp"  style='font-size:30px;color:green' aria-hidden="true"></i>
                                     </button>
                                   </a>

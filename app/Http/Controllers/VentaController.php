@@ -38,7 +38,7 @@ class VentaController extends Controller
                 ['ventas.estado', '=', 'asignado'],
                 ['ventas.fecha','=',$mytime]
             ])
-            ->select('ventas.id','ventas.total','ventas.cantidad','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
+            ->select('ventas.id','ventas.maps','ventas.total','ventas.cantidad','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
             ->get();
         $almacen = Almacen::where('fecha','=',$mytime)
         ->get();
@@ -94,6 +94,7 @@ class VentaController extends Controller
         $venta->telefono = $telefono;
         $venta->direccion = $request->direccion;
         $venta->balon = $request->balon;
+        $venta->maps = $request->input('maps');
         $venta->precio = $request->input('precio');
         
         if($request->referencia){

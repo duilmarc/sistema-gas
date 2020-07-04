@@ -24,7 +24,6 @@ class VentaController extends Controller
     }
     public function index()
     {
-        $comision = $this->show_comision_por_balon();
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
         $empleados = Empleado::all();
@@ -49,11 +48,11 @@ class VentaController extends Controller
         if ($almacen[0]->balon_lleno_normal <= 20 or $almacen[0]->balon_lleno_premiun <= 10 )
         {
             $alerta = 'Queda pocon balones disponibles';
-            return view('ventas.index',compact('ventas','empleados','almacen','comision','alerta'));
+            return view('ventas.index',compact('ventas','empleados','almacen','alerta'));
         }
         else
             $alerta  = "";
-            return view('ventas.index',compact('ventas','empleados','almacen','comision','alerta'));
+            return view('ventas.index',compact('ventas','empleados','almacen','alerta'));
     }
 
     /**
@@ -80,6 +79,7 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
+        $comision = $this->show_comision_por_balon();
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
         $telefono  = $request->input('telefono');
@@ -96,12 +96,12 @@ class VentaController extends Controller
         $venta->balon = $request->balon;
         $venta->maps = $request->input('maps');
         $venta->precio = $request->input('precio');
-        
         if($request->referencia){
             $venta->referencia = $request->referencia;
         }
         $venta->cantidad = $request->input('cantidad');
         $venta->total = $venta->cantidad * $venta->precio;
+        $venta->ganancia = $venta->total - $comision*$venta->cantidad;
         $venta->estado = 'pendiente';
         $venta->fecha = $mytime;
         $venta->save();
@@ -223,6 +223,10 @@ class VentaController extends Controller
         ->where([
             ['ventas.estado', '=', 'realizado'],
         ])->get()->sum("total");
+        $ganancia = DB::table("ventas")->where('ventas.fecha','=',$mytime)
+        ->where([
+            ['ventas.estado', '=', 'realizado'],
+        ])->get()->sum("ganancia");
         $ventas= DB::table('ventas')
             ->leftJoin('empleados', 'empleados.id', '=', 'ventas.repartidor')   
             ->where('ventas.fecha','=',$mytime)
@@ -230,7 +234,7 @@ class VentaController extends Controller
                 ['ventas.estado', '=', 'realizado'],
             ])
             ->get();
-        return view('ventas.realizadas',compact('ventas','total'));
+        return view('ventas.realizadas',compact('ventas','total','ganancia'));
     }
 
     public function show_cancel()
@@ -254,18 +258,10 @@ class VentaController extends Controller
         $mytime = $mytime->toDateString();
 
         $almacen = Almacen::where('fecha','=',$mytime)->select('precioxbalon')->get();
-        $venta = Venta::where('fecha','=',$mytime)->select('precio')->get();
-
-        /////////////////////////////////////////////////////////////
-        ///Control de error si no hay almacen o gastos registrados///
-        /////////////////////////////////////////////////////////////
-   
-        if(sizeof($almacen)>0 && sizeof($venta)>0){
-            $almacen = json_encode($almacen);
-            $almacen = json_decode($almacen);   
-            $venta = json_encode($venta);
-            $venta = json_decode($venta);
-            return round(($venta[0]->precio - $almacen[0]->precioxbalon),2);
+          
+        if(sizeof($almacen)>0){
+            $precio_compra = $almacen[0]->precioxbalon;
+            return $precio_compra;
         }
         return 0;
 

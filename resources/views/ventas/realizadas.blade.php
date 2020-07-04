@@ -8,8 +8,8 @@
 
     <!-- Page Heading -->
 <h1 class="h3 mb-1 text-gray-800">Ventas Realizadas- Fecha:  @php echo Carbon\Carbon::today()->toFormattedDateString() @endphp</h1>
-    <h3 class="h3 mb-1 text-gray-800">Total Ganancia Bruta del dia : S/{{ $total }}</h3>
-    <h3 class="h3 mb-1 text-gray-800">Total Ganancia Neta del dia : S/{{ $total }}</h3>
+    <h3 class="h3 mb-1 text-gray-800">Total Ganancia en ventas Bruta del dia : S/{{ $total }}</h3>
+    <h3 class="h3 mb-1 text-gray-800">Total Ganancia en ventas Neta del dia : S/{{ $ganancia }}</h3>
     <p class="mb-4"></p>
 
     <!-- Content Row -->
@@ -44,6 +44,7 @@
                                 <td> {{ $venta->balon  }} </td>
                                 <td> {{ $venta->precio  }} </td>
                                 <td> {{ $venta->cantidad  }} </td>
+                                <td> {{ $venta->ganancia }}</td>
                                 <td> {{ $venta->total  }} </td>
                                 <td> {{ $venta->referencia  }} </td>
                                 <td> {{ $venta->nombre  }}</td>

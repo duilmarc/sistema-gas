@@ -35,7 +35,7 @@ class HomeController extends Controller
         $total_dia = DB::table("ventas")->where('ventas.fecha','=',$mytime)
         ->where([
             ['ventas.estado', '=', 'realizado'],
-        ])->get()->sum("total");
+        ])->get()->sum("ganancia");
         $faltantes= DB::table('ventas')
         ->leftJoin('empleados', 'empleados.id', '=', 'ventas.repartidor')   
         ->where([

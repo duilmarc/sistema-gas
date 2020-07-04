@@ -95,8 +95,6 @@
                       <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_normal }} balones</div>
                       <div class="text-l font-weight-bold text-info text-uppercase mb-1">Balones Premium Restantes</div>
                       <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_premiun }} balones</div>
-                      <div class="text-l font-weight-bold text-info text-uppercase mb-1">Comision por balon</div>
-                      <div class="h4 mb-0 font-weight-bold text-gray-800">S/.{{$comision}}</div>
                     </div>
                   </div>
                 </div>
@@ -196,12 +194,12 @@
                                 <td>{{ $venta->estado }}</td>
                                 <td><center>
                                   @if((new \Jenssegers\Agent\Agent())->isDesktop())
-                                  <a href="https://web.whatsapp.com/send?phone=51923825605&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:S/{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0ATipo Balón:{{ $venta->balon  }}%0AUbicación Google Maps:{{ $venta->maps  }}%0A--------------------------" target="_blank">
+                                  <a href="https://web.whatsapp.com/send?phone=51953781485&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:S/{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0ATipo Balón:{{ $venta->balon  }}%0AUbicación Google Maps:{{ $venta->maps  }}%0A--------------------------" target="_blank">
                                     <i class="fab fa-whatsapp"  style='font-size:30px;color:green' aria-hidden="true"></i>
                                   </a>
                                   @endif
                                   @if((new \Jenssegers\Agent\Agent())->isMobile())
-                                  <a href="https://api.whatsapp.com/send?phone=51923825605&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:S/{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0ATipo Balón:{{ $venta->balon  }}%0AUbicación Google Maps:{{ $venta->maps  }}%0A---------------------------"  target="_blank">
+                                  <a href="https://api.whatsapp.com/send?phone=51953781485&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:S/{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0ATipo Balón:{{ $venta->balon  }}%0AUbicación Google Maps:{{ $venta->maps  }}%0A---------------------------"  target="_blank">
                                     <button style='font-size:24px'><i class="fab fa-whatsapp"  style='font-size:30px;color:green' aria-hidden="true"></i>
                                     </button>
                                   </a>

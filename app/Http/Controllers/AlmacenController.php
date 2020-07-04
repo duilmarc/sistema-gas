@@ -58,6 +58,7 @@ class AlmacenController extends Controller
             $almacen->balon_lleno_premiun = $request->input('balon_lleno_premiun');
             $almacen->balon_vacio_normal = $request->input('balon_vacio_normal');
             $almacen->balon_vacio_premiun = $request->input('balon_vacio_premiun');
+            $almacen->precioxbalon = $request->input('precioxbalon');
             $almacen->balones_prestados = $request->input('balones_prestados');
             $almacen->fecha = $mytime;
             $almacen->save();

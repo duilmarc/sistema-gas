@@ -19,6 +19,7 @@
                         <th scope="col">balon lleno premiun</th>
                         <th scope="col">balon vacio normal</th>
                         <th scope="col">balon vacio premiun</th>
+                        <th scope="col">precio x balon</th>
                         <th scope="col">balones prestados</th>
 				   </tr>
 			</thead>
@@ -34,18 +35,18 @@
 			    </div>
 
 
-			    <div class="col-auto">
+			    <div class="col">
 			      <label class="sr-only" for="inlineFormInput">balon lleno normal</label>
 			      <input type="number" name="balon_lleno_normal" class="form-control mb-2" id="inlineFormInput" value="{{$almacenes[0]->balon_lleno_normal}}" placeholder="balon_lleno_normal" required>
 			    </div>
 
-			    <div class="col-auto">
+			    <div class="col">
 			      <label class="sr-only" for="inlineFormInputGroup">balon lleno premiun</label>
 			      <div class="input-group mb-2">
 			        <input type="number" name="balon_lleno_premiun" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->balon_lleno_premiun}}" placeholder="balon_lleno_premiun" required>
 			      </div>
 			    </div>
-			    <div class="col-auto">
+			    <div class="col">
 			      <label class="sr-only" for="inlineFormInputGroup">balon vacio normal</label>
 			      <div class="input-group mb-2">
 			        <input type="number" name="balon_vacio_normal" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->balon_vacio_normal}}" placeholder="balon_vacio_normal" required>
@@ -53,20 +54,26 @@
 			    </div>
 
 
-			    <div class="col-auto">
+			    <div class="col">
 			      <label class="sr-only" for="inlineFormInputGroup">balon vacio premiun</label>
 			      <div class="input-group mb-2">
 			        <input type="number" name="balon_vacio_premiun" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->balon_vacio_premiun}}"placeholder="balon_vacio_premiun" required>
 			      </div>
 			    </div>
-			    <div class="col-auto">
+			    <div class="col">
+			      <label class="sr-only" for="inlineFormInputGroup">precio x balon</label>
+			      <div class="input-group mb-2">
+			        <input type="number" name="precioxbalon" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->precioxbalon}}" placeholder="precioxbalon" required>
+			      </div>
+			    </div>
+			    <div class="col">
 			      <label class="sr-only" for="inlineFormInputGroup">balones prestados</label>
 			      <div class="input-group mb-2">
 			        <input type="number" name="balones_prestados" class="form-control" id="inlineFormInputGroup" value="{{$total}}">
 			      </div>
 			    </div>
 
-			    <div class="col-auto">
+			    <div class="col">
 			      <button type="submit" class="btn btn-primary mb-2">Registrar</button>
 			    </div>		    
 			  </div>
@@ -88,6 +95,7 @@
                             <th>balon lleno premiun</th>
                             <th>balon vacio normal</th>
                             <th>balon vacio premiun</th>
+                            <th>precio x balon</th>
                             <th>balones prestados</th>
                             <th>Fecha...</th>
                         </tr>
@@ -100,6 +108,7 @@
 							      <td>{{$alma->balon_lleno_premiun}}</td>
 							      <td>{{$alma->balon_vacio_normal}}</td>
 							      <td>{{$alma->balon_vacio_premiun}}</td>
+							      <td>{{$alma->precioxbalon}}</td>
 							      <td>{{$alma->balones_prestados}}</td>
 							      <td>{{$alma->fecha}}</td>
                             </tr>

@@ -252,26 +252,19 @@ class VentaController extends Controller
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
 
-        $gasto_balon = Gastos::where('fecha','=',$mytime)->where('tipo_gasto','=','gas')->select('monto')->get();
-        $almacen = Almacen::where('fecha','=',$mytime)->get();
+        $almacen = Almacen::where('fecha','=',$mytime)->select('precioxbalon')->get();
         $venta = Venta::where('fecha','=',$mytime)->select('precio')->get();
 
         /////////////////////////////////////////////////////////////
         ///Control de error si no hay almacen o gastos registrados///
         /////////////////////////////////////////////////////////////
    
-        if(sizeof($gasto_balon)>0 && sizeof($almacen)>0 && sizeof($venta)>0){
-            $gasto_balon = json_encode($gasto_balon);
-            $gasto_balon = json_decode($gasto_balon);
-
+        if(sizeof($almacen)>0 && sizeof($venta)>0){
             $almacen = json_encode($almacen);
-            $almacen = json_decode($almacen);
-            $precioXbalon = $gasto_balon[0]->monto/ ($almacen[0]->balon_lleno_normal + $almacen[0]->balon_lleno_premiun);
-
-
-            $gasto_balon = json_encode($gasto_balon);
-            $gasto_balon = json_decode($gasto_balon);
-            return round(($venta[0]->precio - $precioXbalon),2);
+            $almacen = json_decode($almacen);   
+            $venta = json_encode($venta);
+            $venta = json_decode($venta);
+            return round(($venta[0]->precio - $almacen[0]->precioxbalon),2);
         }
         return 0;
 

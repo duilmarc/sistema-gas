@@ -90,7 +90,7 @@
                       <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_normal }} balones</div>
                       <div class="text-l font-weight-bold text-info text-uppercase mb-1">Balones Premium Restantes</div>
                       <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_premiun }} balones</div>
-                      <div class="text-l font-weight-bold text-info text-uppercase mb-1">Comision promedio por balon</div>
+                      <div class="text-l font-weight-bold text-info text-uppercase mb-1">Comision por balon</div>
                       <div class="h4 mb-0 font-weight-bold text-gray-800">S/.{{$comision}}</div>
                     </div>
                   </div>

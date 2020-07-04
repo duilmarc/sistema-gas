@@ -100,6 +100,7 @@
                                                           <th>Apellido</th>
                                                           <th>Dirección</th>
                                                           <th>Balon Prestado</th>
+                                                          <th>Fecha y hora</th>
                                                           <th>Editar...</th>
                                                       </tr>
                                                     </thead>
@@ -111,6 +112,7 @@
                                       							      <td>{{$cliente->apellidos}}</td>
                                       							      <td>{{$cliente->direccion}}</td>
                                                           <td>{{$cliente->balon_prestado}}</td>
+                                                          <td>{{$cliente->updated_at}}</td>
                                                                 <td><center>
                                                                     <a class="btn btn-info" href="/clientes/{{$cliente->telefono}}/edit" aria-label="edit">
                                                                        <i class="fa fa-user-circle" aria-hidden="true"></i>

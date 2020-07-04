@@ -21,6 +21,7 @@
 				      <th scope="col">Placa</th>
 				      <th scope="col">Color</th>
               <th scope="col">Ultimo mantenimiento</th>
+              <th scope="col">Descripcion</th>
 				   </tr>
 			</thead>
 		</table>
@@ -41,7 +42,11 @@
           </div>
           <div class="col-auto">
             <label class="sr-only" for="inlineFormInput">Ultimo mantenimiento</label>
-            <input type="date" name="fecha" class="form-control mb-2" id="inlineFormInput" placeholder="color">
+            <input type="date" name="fecha" class="form-control mb-2" id="inlineFormInput" placeholder="ultimo mantenimiento">
+          </div>
+          <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput">Descripcion</label>
+            <input type="text" name="descripcion" class="form-control mb-2" id="inlineFormInput" placeholder="descripcion">
           </div>
           
           <div class="col-auto">
@@ -84,7 +89,9 @@
                             <th>Placa</th>
                             <th>Color</th>
                             <th>Ultimo mantenimiento</th>
+                            <th>Descripcion</th>
                             <th>Editar...</th>
+
                         </tr>
                       </thead>
                       
@@ -93,6 +100,7 @@
                         <td>{{$moto->placa}}</td>
                         <td>{{$moto->color}}</td>
                         <td>{{$moto->fecha}}</td>
+                        <td>{{$moto->descripcion}}</td>
                         <td><center>
                                     <a class="btn btn-info" href="/motos/{{$moto->placa}}/edit" aria-label="edit">
                                         <i class="fa fa-motorcycle" aria-hidden="true"></i>

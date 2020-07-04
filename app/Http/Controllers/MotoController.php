@@ -50,6 +50,7 @@ class MotoController extends Controller
             $moto->placa = $request->input('placa');
             $moto->color = $request->input('color');
             $moto->fecha = $request->input('fecha');
+            $moto->descripcion = $request->input('descripcion');
             $moto->save();
         }
         return redirect()->back()->with('notificacion','Se Registro una moto correctamente');

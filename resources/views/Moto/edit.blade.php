@@ -16,6 +16,7 @@
 				      <th scope="col-auto">Placa</th>
 				      <th scope="col-auto">Color</th>
 				      <th scope="col-auto">Ultimo mantenimiento</th>
+				      <th scope="col">Descripcion</th>
 				   </tr>
 			</thead>
 		</table>
@@ -48,7 +49,6 @@
 			      </div>
 			    </div>
 
-
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInput">Color</label>
 			      <input type="text" name="color" class="form-control mb-2" id="inlineFormInput" value="{{$moto->color}}" required>
@@ -57,6 +57,10 @@
 		            <label class="sr-only" for="inlineFormInput">Ultimo mantenimiento</label>
 		            <input type="date" name="fecha" class="form-control mb-2" id="inlineFormInput" value="{{$moto->fecha}}" >
           		</div>
+          		<div class="col-auto">
+		            <label class="sr-only" for="inlineFormInput">Descripcion</label>
+		            <input type="text" name="descripcion" class="form-control mb-2" id="inlineFormInput" value="{{$moto->descripcion}}">
+		        </div>
 
 			    <div class="col-auto">
 			      <button type="submit" class="btn btn-primary mb-2">Editar</button>

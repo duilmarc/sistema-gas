@@ -133,7 +133,7 @@
                             <th>Realizado</th>
                             <th>Cancelado</th>
                             <th>Estado</th>
-                            <th>Enviar</th>
+                            <th>Copiar</th>
                         </tr>
                       </thead>
                       
@@ -192,19 +192,28 @@
                                 </td>
                                 
                                 <td>{{ $venta->estado }}</td>
-                                <td><center>
-                                  @if((new \Jenssegers\Agent\Agent())->isDesktop())
-                                  <a href="https://web.whatsapp.com/send?phone=51953781485&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:S/{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0ATipo Balón:{{ $venta->balon  }}%0AUbicación Google Maps:{{ $venta->maps  }}%0A--------------------------" target="_blank">
-                                    <i class="fab fa-whatsapp"  style='font-size:30px;color:green' aria-hidden="true"></i>
-                                  </a>
-                                  @endif
-                                  @if((new \Jenssegers\Agent\Agent())->isMobile())
-                                  <a href="https://api.whatsapp.com/send?phone=51953781485&text=--------------------------%0AVenta ID:{{ $venta->id }}%0ADireccion:{{ $venta->direccion }}%0ARepartidor:{{ $venta->nombre }}%0APrecio:S/{{ $venta->precio }}%0AReferencia:{{ $venta->referencia  }}%0ATipo Balón:{{ $venta->balon  }}%0AUbicación Google Maps:{{ $venta->maps  }}%0A---------------------------"  target="_blank">
-                                    <button style='font-size:24px'><i class="fab fa-whatsapp"  style='font-size:30px;color:green' aria-hidden="true"></i>
-                                    </button>
-                                  </a>
-                                  @endif
-                                </center>
+                                <td>
+                                  <!-- The text field -->
+                                  <div id="copy" style="text-align: center;" hidden> 
+                                    <div class="row">
+                                      <div class="col-sm-12 col-lg-12 col-md-12">
+                                        ++++++++++++++++++ *Venta N°{{ $venta->id }}* ++++++++++++++++++
+                                        *Telefono*: {{ $venta->telefono }},
+                                        *Ubicación*: {{ $venta->direccion }},
+                                        *Repartidor*: {{ $venta->nombre }},
+                                        *Precio*: S/{{ $venta->precio }},
+                                        *Referencia*: {{ $venta->referencia  }},
+                                        *Tipo Balón*: {{ $venta->balon  }},
+                                        *Ubicación Google Maps*:  {{ $venta->maps  }},
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <center>
+                                  <button id="bton" onclick="copiar()" class="btn btn-primary" type="button">
+                                    <i class="fas fa-copy fa-sm"></i> Copiar
+                                  </button>
+
+                                </center>                                
                                  
                                 </td>
                             </tr>
@@ -228,7 +237,22 @@
   
 @endsection
 @section('footers')
+  <script>
+function copiar(){      
+  // Crea un input para poder copiar el texto dentro      
+  let copyText = document.getElementById('copy').innerText
+  const textArea = document.createElement('textarea');
+  textArea.textContent = copyText;
+  document.body.append(textArea);      
+  textArea.select();      
+  document.execCommand("copy");        
+  textArea.remove()
+  var uno = document.getElementById('bton');
+  uno.innerText = 'Copiado!'
+} 
 
+
+  </script>
   <!-- Page level plugins -->
   <script src="{{ asset('css/fuentes/datatables/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('css/fuentes/datatables/dataTables.bootstrap4.min.js') }}"></script>

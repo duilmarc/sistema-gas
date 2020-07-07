@@ -63,7 +63,7 @@
 			    <div class="col">
 			      <label class="sr-only" for="inlineFormInputGroup">precio x balon</label>
 			      <div class="input-group mb-2">
-			        <input type="number" name="precioxbalon" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->precioxbalon}}" placeholder="precioxbalon" required>
+			        <input type="number" step="0.1" name="precioxbalon" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->precioxbalon}}" placeholder="precioxbalon" required>
 			      </div>
 			    </div>
 			    <div class="col">

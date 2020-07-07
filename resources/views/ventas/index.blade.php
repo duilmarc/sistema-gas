@@ -55,7 +55,7 @@
                     <div class="col-4">
                       <label class="sr-only" for="inlineFormInputGroup">precio</label>
                       <div class="input-group mb-2">
-                        <input type="number" name="precio" class="form-control" id="inlineFormInputGroup" placeholder="Precio" required>
+                        <input type="number" step="0.1" name="precio" class="form-control" id="inlineFormInputGroup" placeholder="Precio" required>
                       </div>
                     </div>
                     <div class="col-4">

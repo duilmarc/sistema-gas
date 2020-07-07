@@ -39,7 +39,7 @@
 
           <div class="col-auto">
             <label class="sr-only" for="inlineFormInput">Monto</label>
-            <input type="number" name="monto" class="form-control mb-2" id="inlineFormInput" placeholder="Monto" required>
+            <input type="number" step="0.1" name="monto" class="form-control mb-2" id="inlineFormInput" placeholder="Monto" required>
           </div>
 
           <div class="col-auto">

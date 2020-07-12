@@ -33,6 +33,8 @@
                             <th>Total</th>
                             <th>Referencia</th>
                             <th>Repartidor</th>
+                            <th>Hora de solicitud</th>
+                            <th>Hora exacta entrega</th>
                         </tr>
                       </thead>
                       
@@ -48,6 +50,8 @@
                                 <td> {{ $venta->total  }} </td>
                                 <td> {{ $venta->referencia  }} </td>
                                 <td> {{ $venta->nombre  }}</td>
+                                <th>{{ $venta->created_at }}</th>
+                                <td>{{ $venta->updated_at }}</td>
                         </tr>
                         @endforeach
                         

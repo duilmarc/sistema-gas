@@ -72,9 +72,9 @@ class EmpleadoController extends Controller
     {
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
-        $ventas = Venta::where('repartidor','=',$id)->where('fecha','=',$mytime)
+        $ventas = Venta::where('repartidor','=',$id)->where('fecha','=',$mytime)->where('estado','=','realizado')
         ->get();
-        $total = collect($ventas)->sum('precio');
+        $total = collect($ventas)->sum('total');
         $repartidor = Empleado::where('id','=',$id)->first();
         if(sizeof($ventas))
         {
@@ -200,15 +200,7 @@ class EmpleadoController extends Controller
         return redirect()->back()->with('notificacion','Se Registro el monto correctamente');    
     }
     
-    public function registrar_monto($id)
-    {
-        $mytime = Carbon::today();
-        $mytime = $mytime->toDateString();
-        DB::insert('insert into asistencia (id, fecha,condicion) values (?, ?, ?)', [$id, $mytime,'asistio']);
-        return redirect()->back()->with('notificacion','Se Registro la asistencia correctamente');
-    }
-
-    public function show(Empleado $empleado)
+     public function show(Empleado $empleado)
     {
         //
     }

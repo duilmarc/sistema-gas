@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 
+
 class VentaController extends Controller
 {
     /**
@@ -37,7 +38,8 @@ class VentaController extends Controller
                 ['ventas.estado', '=', 'asignado'],
                 ['ventas.fecha','=',$mytime]
             ])
-            ->select('ventas.id','ventas.maps','ventas.total','ventas.cantidad','ventas.telefono', 'ventas.direccion', 'empleados.nombre','ventas.balon','ventas.precio','ventas.referencia','ventas.estado')
+            ->select('ventas.*', 'empleados.nombre' )
+            ->orderBy('ventas.updated_at','desc')
             ->get();
         $almacen = Almacen::where('fecha','=',$mytime)
         ->get();
@@ -163,38 +165,46 @@ class VentaController extends Controller
         $tipo_balon = $venta->balon;
         $venta->estado = 'realizado';  
      
-       
-        $query = DB::table('almacenes')
-        ->where('fecha','=',$mytime);                                     
-      
-        if($tipo_balon == 'normal')// venta balon normal
-        {
-            $query->increment('balon_vacio_normal',$venta->cantidad);
-            $query->decrement('balon_lleno_normal',$venta->cantidad);
+        DB::beginTransaction();
+        try {
+            $query = DB::table('almacenes')
+            ->where('fecha','=',$mytime);                                     
+            if($tipo_balon == 'normal')// venta balon normal
+            {
+                $query->increment('balon_vacio_normal',$venta->cantidad);
+                $query->decrement('balon_lleno_normal',$venta->cantidad);
+            }
+            else if($tipo_balon == 'vacio_normal') //venta balon vacio normal
+            {
+                $query->decrement('balon_vacio_normal',$venta->cantidad);
+            }
+            else if($tipo_balon == 'vacio_premium') //venta balon vacio premium
+            {
+                $query->decrement('balon_vacio_premiun',$venta->cantidad);
+            }
+            else
+            {
+                $query->increment('balon_vacio_premiun',$venta->cantidad);//venta balon premium
+                $query->decrement('balon_lleno_premiun',$venta->cantidad);
+            }
+            $venta->push();
+            $query = DB::table('cartera')->where('fecha','=',$mytime)->where('id','=',$venta->repartidor);
+            if(sizeof($query->get())==0)
+            {
+                DB::insert('insert into cartera (id, fecha,monto) values (?, ?, ?)', [$venta->repartidor, $mytime,$venta->total]);
+            }
+            else{
+                $query->increment('monto',$venta->total);
+            }
+            DB::commit();
+            return back()->with('notificacion',' Guardado correctamente!');
+            // all good
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('alerta',' No se registro correctamente, intentelo nuevamente!');
+            // something went wrong
         }
-        else if($tipo_balon == 'vacio_normal') //venta balon vacio normal
-        {
-            $query->decrement('balon_vacio_normal',$venta->cantidad);
-        }
-        else if($tipo_balon == 'vacio_premium') //venta balon vacio premium
-        {
-            $query->decrement('balon_vacio_premiun',$venta->cantidad);
-        }
-        else
-        {
-            $query->increment('balon_vacio_premiun',$venta->cantidad);//venta balon premium
-            $query->decrement('balon_lleno_premiun',$venta->cantidad);
-        }
-        $venta->push();
-        $query = DB::table('cartera')->where('fecha','=',$mytime)->where('id','=',$venta->repartidor);
-        if(sizeof($query->get())==0)
-        {
-            DB::insert('insert into cartera (id, fecha,monto) values (?, ?, ?)', [$venta->repartidor, $mytime,$venta->total]);
-        }
-        else{
-            $query->increment('monto',$venta->total);
-        }
-        return back()->with('notificacion',' Guardado correctamente!');
+
 
     }
 
@@ -233,6 +243,8 @@ class VentaController extends Controller
             ->where([
                 ['ventas.estado', '=', 'realizado'],
             ])
+            ->orderBy('ventas.updated_at','desc')
+            ->select('ventas.*','empleados.nombre')
             ->get();
         return view('ventas.realizadas',compact('ventas','total','ganancia'));
     }
@@ -247,6 +259,7 @@ class VentaController extends Controller
         ->where([
             ['ventas.estado', '=', 'cancelado'],
         ])
+        ->orderBy('updated_at','desc')
         ->get();
         return view('ventas.cancelados',compact('ventas'));
     }

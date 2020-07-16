@@ -112,6 +112,15 @@
           </div>
         </div>
         @endif
+        @if(session('alerta')))
+        <div class="col-lg-12">
+          <div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Aviso!</h4>
+            {{session('alerta')}}
+          </div>
+        </div>
+        @endif
         <div class="col-lg-12">
             <div class="card shadow mb-4  border-left-primary">
                 <div class="card-header py-3">
@@ -194,22 +203,12 @@
                                 <td>{{ $venta->estado }}</td>
                                 <td>
                                   <!-- The text field -->
-                                  <div id="copy" style="text-align: center;" hidden> 
-                                    <div class="row">
-                                      <div class="col-sm-12 col-lg-12 col-md-12">
-                                        ++++++++++++++++++ *Venta N°{{ $venta->id }}* ++++++++++++++++++
-                                        *Telefono*: {{ $venta->telefono }},
-                                        *Ubicación*: {{ $venta->direccion }},
-                                        *Repartidor*: {{ $venta->nombre }},
-                                        *Precio*: S/{{ $venta->precio }},
-                                        *Referencia*: {{ $venta->referencia  }},
-                                        *Tipo Balón*: {{ $venta->balon  }},
-                                        *Ubicación Google Maps*:  {{ $venta->maps  }},
-                                      </div>
-                                    </div>
-                                  </div>
+                                  <div id="{{ $venta->id }}" hidden>
+                                   *VENTA*: {{ $venta->telefono }}, {{ $venta->direccion }}, {{ $venta->nombre }}, {{ $venta->cantidad}} balon(es), S/{{ $venta->precio }}, {{ $venta->referencia  }}, {{ $venta->balon  }}.
+                                   *Ubicación Google Maps*:  {{ $venta->maps  }}
+                                   </div>
                                   <center>
-                                  <button id="bton" onclick="copiar()" class="btn btn-primary" type="button">
+                                  <button id="bton{{ $venta->id }}" onclick="copiar({{ $venta->id }})" class="btn btn-primary" type="button">
                                     <i class="fas fa-copy fa-sm"></i> Copiar
                                   </button>
 
@@ -238,17 +237,16 @@
 @endsection
 @section('footers')
   <script>
-function copiar(){      
+function copiar(id){      
   // Crea un input para poder copiar el texto dentro      
-  let copyText = document.getElementById('copy').innerText
+  let copyText = document.getElementById(id).innerText;
   const textArea = document.createElement('textarea');
   textArea.textContent = copyText;
   document.body.append(textArea);      
   textArea.select();      
   document.execCommand("copy");        
-  textArea.remove()
-  var uno = document.getElementById('bton');
-  uno.innerText = 'Copiado!'
+  textArea.remove();
+  alert('El registro se ha copiado');
 } 
 
 

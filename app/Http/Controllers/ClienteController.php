@@ -61,6 +61,7 @@ class ClienteController extends Controller
             $cliente->nombres = $request->input('nombre');
             $cliente->direccion = $request->input('direccion');
             $cliente->balon_prestado = $request->input('balon_prestado');
+            $cliente->deuda = $request->input('deuda');
             $cliente->latitud = $request->input('latitud');
             $cliente->longitud = $request->input('longitud');
             $cliente->save();
@@ -104,7 +105,7 @@ class ClienteController extends Controller
         $cliente->fill($request->all());
         $cliente->save();
         $clientes = Cliente::all();
-        return view('Clientes.index', compact('clientes'))->with('notificacion','Se Registro un cliente correctamente');;;
+        return view('Clientes.index', compact('clientes'))->with('notificacion','Se Registro un cliente correctamente');
     }
 
     /**

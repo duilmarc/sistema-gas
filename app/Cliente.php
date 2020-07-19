@@ -8,7 +8,7 @@ class Cliente extends Model
 {
 
 	protected $primaryKey = 'telefono';
-	protected $fillable = ['telefono','nombres','apellidos','direccion','latitud','longitud','balon_prestado'];
+	protected $fillable = ['telefono','nombres','apellidos','direccion','latitud','longitud','balon_prestado','deuda','comentarios'];
 	    /**
 	 * Get the route key for the model.
 	 *

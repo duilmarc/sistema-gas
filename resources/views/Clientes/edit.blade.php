@@ -16,7 +16,8 @@
 				      <th scope="col-auto">Nombres</th>
 				      <th scope="col-auto">Apellido</th>
 				      <th scope="col-auto">Direccion</th>
-				      <th scope="col">Balon prestado</th>
+				      <th scope="col-auto">Balon prestado</th>
+				      <th scope="col-auto">Deuda</th>
 				   </tr>
 			</thead>
 		</table>
@@ -45,33 +46,45 @@
 			  	<div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
 			      <div class="input-group mb-2">
-			        <input type="number" name="telefono" class="form-control" id="inlineFormInputGroup" value="{{$cliente->telefono}}" required>
+			        <input type="number" name="telefono" class="form-control" id="inlineFormInputGroup" placeholder="telefono" value="{{$cliente->telefono}}" required>
 			      </div>
 			    </div>
 
 
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInput">Nombre</label>
-			      <input type="text" name="nombres" class="form-control mb-2" id="inlineFormInput" value="{{$cliente->nombres}}">
+			      <input type="text" name="nombres" class="form-control mb-2" id="inlineFormInput" placeholder="nombre" value="{{$cliente->nombres}}">
 			    </div>
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Apellido</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="apellidos" class="form-control" id="inlineFormInputGroup" value="{{$cliente->apellidos}}">
+			        <input type="text" name="apellidos" class="form-control" id="inlineFormInputGroup" placeholder="apellidos" value="{{$cliente->apellidos}}">
 			      </div>
 			    </div>
 			    <div class="col-auto">
 			      <label class="sr-only" for="inlineFormInputGroup">Direccion</label>
 			      <div class="input-group mb-2">
-			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" value="{{$cliente->direccion}}">
+			        <input type="text" name="direccion" class="form-control" id="inlineFormInputGroup" placeholder="direccion" value="{{$cliente->direccion}}">
 			      </div>
 			    </div>
             <div class="col-auto">
               <label class="sr-only" for="inlineFormInputGroup">Balon prestado</label>
               <div class="input-group mb-2">
-                <input type="text" name="balon_prestado" class="form-control" id="inlineFormInputGroup" value="{{$cliente->balon_prestado}}">
+                <input type="text" name="balon_prestado" class="form-control" id="inlineFormInputGroup" placeholder="balon_prestado" value="{{$cliente->balon_prestado}}">
               </div>
           </div>
+          <div class="col-auto">
+              <label class="sr-only" for="inlineFormInputGroup">Deuda</label>
+              <div class="input-group mb-2">
+                <input type="number" step='0.01' name="deuda" class="form-control" id="inlineFormInputGroup" placeholder="deuda" value="{{$cliente->deuda}}">
+              </div>
+          </div>
+      <div class="col-auto">
+          <label class="sr-only" for="inlineFormInputGroup">Coment</label>
+          <div class="input-group mb-2">
+            <input type="text"  name="comentarios" class="form-control" id="inlineFormInputGroup" value="{{$cliente->comentarios}}" placeholder="Comentarios">
+          </div>
+      </div>
 
 			    <div class="col-auto">
 			      <button type="submit" class="btn btn-primary mb-2">Editar</button>

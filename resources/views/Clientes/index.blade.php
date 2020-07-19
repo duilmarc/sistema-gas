@@ -23,6 +23,8 @@
                                               				      <th scope="col">Apellido</th>
                                               				      <th scope="col">Direccion</th>
                                                             <th scope="col">Balon prestado</th>
+                                                            <th scope="col">Deuda</th>
+                                                            <th scope="col">Comentario</th>
 
                                               				   </tr>
                                               			</thead>
@@ -60,6 +62,19 @@
                                                               <input type="text" name="balon_prestado" class="form-control" id="inlineFormInputGroup" placeholder="Balones prestados">
                                                             </div>
                                                         </div>
+                                                        <div class="col-auto">
+                                                            <label class="sr-only" for="inlineFormInputGroup">Deuda</label>
+                                                            <div class="input-group mb-2">
+                                                              <input type="number" step='0.01' name="deuda" class="form-control" id="inlineFormInputGroup" placeholder="Deuda">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <label class="sr-only" for="inlineFormInputGroup">Coment</label>
+                                                            <div class="input-group mb-2">
+                                                              <input type="text"  name="comentarios" class="form-control" id="inlineFormInputGroup" placeholder="Comentarios">
+                                                            </div>
+                                                        </div>
+
 
                                               			    <div class="col-auto">
                                               			      <button type="submit" class="btn btn-primary mb-2">Registrar</button>
@@ -100,6 +115,8 @@
                                                           <th>Apellido</th>
                                                           <th>Dirección</th>
                                                           <th>Balon Prestado</th>
+                                                          <th>Deuda</th>
+                                                          <th>Comentarios</th>
                                                           <th>Fecha y hora</th>
                                                           <th>Editar...</th>
                                                       </tr>
@@ -112,6 +129,8 @@
                                       							      <td>{{$cliente->apellidos}}</td>
                                       							      <td>{{$cliente->direccion}}</td>
                                                           <td>{{$cliente->balon_prestado}}</td>
+                                                          <td>{{$cliente->deuda}}</td>
+                                                          <td>{{$cliente->comentarios}}</td>
                                                           <td>{{$cliente->updated_at}}</td>
                                                                 <td><center>
                                                                     <a class="btn btn-info" href="/clientes/{{$cliente->telefono}}/edit" aria-label="edit">

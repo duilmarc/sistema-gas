@@ -107,7 +107,7 @@
                           </div>
                             <div class="card-body">
                                         <div class="table-responsive">
-                                          <table class="table table-hover table-dark table-sm table-bordered "bg="white" id="sorteable" width="100%" cellspacing="0">
+                                          <table class="table table-hover table-dark table-sm table-bordered "bg="white" id="dataTable" width="100%" cellspacing="0">
                                                     <thead>
                                                       <tr>
                                                           <th>Telefono Contacto</th>
@@ -116,6 +116,7 @@
                                                           <th>Dirección</th>
                                                           <th>Balon Prestado</th>
                                                           <th>Deuda</th>
+                                                          <th>Frecuencia</th>
                                                           <th>Comentarios</th>
                                                           <th>Fecha y hora</th>
                                                           <th>Editar...</th>
@@ -130,6 +131,7 @@
                                       							      <td>{{$cliente->direccion}}</td>
                                                           <td>{{$cliente->balon_prestado}}</td>
                                                           <td>{{$cliente->deuda}}</td>
+                                                          <td>{{$cliente->frecuencia}}</td>
                                                           <td>{{$cliente->comentarios}}</td>
                                                           <td>{{$cliente->updated_at}}</td>
                                                                 <td><center>

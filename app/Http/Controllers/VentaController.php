@@ -90,8 +90,10 @@ class VentaController extends Controller
             $cliente = new Cliente();
             $cliente->telefono = $request->input('telefono');
             $cliente->direccion = $request->input('direccion');
+            $cliente->increment('frecuencia',1);
             $cliente->save();
         }
+        $user->increment('frecuencia',1);
         $venta = new Venta();
         $venta->telefono = $telefono;
         $venta->direccion = $request->direccion;

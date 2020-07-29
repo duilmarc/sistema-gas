@@ -62,6 +62,7 @@ class ClienteController extends Controller
             $cliente->direccion = $request->input('direccion');
             $cliente->balon_prestado = $request->input('balon_prestado');
             $cliente->deuda = $request->input('deuda');
+            $cliente->frecuencia = 0;
             $cliente->latitud = $request->input('latitud');
             $cliente->longitud = $request->input('longitud');
             $cliente->save();

@@ -27,13 +27,6 @@
 			<form method="POST" action="/almacen">
 				@csrf
 			  <div class="form-row align-items-center">
-			  	<div class="col-auto">
-			      <label class="sr-only" for="inlineFormInputGroup">almacen</label>
-			      <div class="input-group mb-2">
-			        <input type="number" name="almacen" class="form-control" id="inlineFormInputGroup" value="{{$almacenes[0]->almacen}}"placeholder="Almacen" required>
-			      </div>
-			    </div>
-
 
 			    <div class="col">
 			      <label class="sr-only" for="inlineFormInput">balon lleno normal</label>
@@ -97,7 +90,8 @@
                             <th>balon vacio premiun</th>
                             <th>precio x balon</th>
                             <th>balones prestados</th>
-                            <th>Fecha...</th>
+                            <th>Fecha Registro</th>
+                            <th>Actualizado</th>
                         </tr>
                       </thead>
                       
@@ -111,6 +105,7 @@
 							      <td>{{$alma->precioxbalon}}</td>
 							      <td>{{$alma->balones_prestados}}</td>
 							      <td>{{$alma->fecha}}</td>
+							      <td>{{$alma->updated_at}}</td>
                             </tr>
                         @endforeach
                         

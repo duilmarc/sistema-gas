@@ -21,10 +21,62 @@
       </div>
       @endif
         <!-- Border Left Utilities -->
+      <div class="col-lg-4">
+        <div class="card shadow mb-4  border-left-primary">
+          <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Buscar cliente</h6>
+          </div>
+          <div class="card-body">
+              <form method="GET" action="/consulta">
+                  @csrf
+                  <div class="col-12">
+                    <div class="form-row align-items-center">
+                      <div class="col-auto col-sm-8">
+                        <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
+                        <div class="input-group mb-2">
+                          <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" placeholder="Telefono" required>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary mb-2"> 
+                          <span class="icon text-white-50">
+                            <i class="fas fa-search"></i>
+                          </span>
+                          <span class="text">Buscar Cliente</span>
+                      </button>
+                    </div>
+                  </div>
+              </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-md-12 mb-12">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-l font-weight-bold text-info text-uppercase mb-1">Balones Normales Restantes</div>
+                    <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_normal }} balones</div>
+                    <div class="text-l font-weight-bold text-info text-uppercase mb-1">Balones Premium Restantes</div>
+                    <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_premiun }} balones</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="col-lg-8">
         <div class="card shadow mb-4  border-left-primary">
             <div class="card-header py-3">
+              @if($user!= null)
                 <h6 class="m-0 font-weight-bold text-primary">Registrar venta</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Cliente: {{ $user->nombres }} {{ $user->apellidos }}</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Telefono: {{ $user->telefono }}</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Frecuencia de cliente : {{ $user->frecuencia}} </h6>
+              @else
+                <h6 class="m-0 font-weight-bold text-primary">Registrar venta de nuevo cliente: </h6>
+              @endif
             </div>
             <div class="card-body">
                 <form method="POST" action="/ventas">
@@ -33,13 +85,23 @@
                       <div class="col-auto col-sm-4">
                       <label class="sr-only" for="inlineFormInputGroup">Telefono</label>
                       <div class="input-group mb-2">
-                        <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" placeholder="Telefono" required>
+                        @if($user!= null)
+                          <input type="text" name="telefono" value="{{ $user->telefono }}" class="form-control" id="inlineFormInputGroup" placeholder="telefono" required>
+                        @else
+                          <input type="text" name="telefono" class="form-control" id="inlineFormInputGroup" value="{{ $telefono }}" placeholder="telefono" required>
+                        @endif
+                        
                       </div>
                     </div>
             
                     <div class="col-8 col-sm-6">
                       <label class="sr-only" for="inlineFormInput">Direccion</label>
-                      <input type="text" name="direccion" class="form-control mb-2" id="inlineFormInput" placeholder="Dirección" required>
+                        @if($user!= null)
+                          <input type="text" name="direccion" value="{{ $user->direccion }}" class="form-control mb-2" id="inlineFormInput" placeholder="telefono" required>
+                        @else
+                          <input type="text" name="direccion" class="form-control mb-2" id="inlineFormInput" placeholder="Dirección" required>
+                        @endif
+                     
                     </div>
                     <div class="col-auto">
                       <label class="sr-only" for="inlineFormInputGroup">Tipo balon</label>
@@ -77,30 +139,19 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button type="submit" class="btn btn-primary mb-2">Registrar</button>
+                      <button type="submit" class="btn btn-primary btn-block"> 
+                        <span class="icon text-white-100 ">
+                          <i class="fas fa-save"></i>
+                        </span>
+                        <span class="text">Registrar</span>
+                    </button>
                     </div>
-                  </div>
-                
-            </div>
-        </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="row">
-            <div class="col-xl-12 col-md-12 mb-12">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-l font-weight-bold text-info text-uppercase mb-1">Balones Normales Restantes</div>
-                      <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_normal }} balones</div>
-                      <div class="text-l font-weight-bold text-info text-uppercase mb-1">Balones Premium Restantes</div>
-                      <div class="h4 mb-0 font-weight-bold text-gray-800">{{ $almacen[0]->balon_lleno_premiun }} balones</div>
-                    </div>
-                  </div>
+                  
+                </form>
+
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
         </div>
 
         @if(session('notificacion')))

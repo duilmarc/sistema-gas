@@ -23,8 +23,14 @@ class VentaController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index($user= null)
     {
+        $telefono = null;
+        if(is_string($user))
+        {
+            $telefono = $user;
+            $user=null;
+        }
         $mytime = Carbon::today();
         $mytime = $mytime->toDateString();
         $empleados = Empleado::all();
@@ -50,11 +56,11 @@ class VentaController extends Controller
         if ($almacen[0]->balon_lleno_normal <= 20 or $almacen[0]->balon_lleno_premiun <= 10 )
         {
             $alerta = 'Queda pocon balones disponibles';
-            return view('ventas.index',compact('ventas','empleados','almacen','alerta'));
+            return view('ventas.index',compact('ventas','empleados','almacen','alerta','user','telefono'));
         }
         else
             $alerta  = "";
-            return view('ventas.index',compact('ventas','empleados','almacen','alerta'));
+            return view('ventas.index',compact('ventas','empleados','almacen','alerta','user','telefono'));
     }
 
     /**
@@ -90,10 +96,9 @@ class VentaController extends Controller
             $cliente = new Cliente();
             $cliente->telefono = $request->input('telefono');
             $cliente->direccion = $request->input('direccion');
-            $cliente->increment('frecuencia',1);
+            $cliente->frecuencia = 0;
             $cliente->save();
         }
-        $user->increment('frecuencia',1);
         $venta = new Venta();
         $venta->telefono = $telefono;
         $venta->direccion = $request->direccion;
@@ -169,6 +174,8 @@ class VentaController extends Controller
      
         DB::beginTransaction();
         try {
+            $user = Cliente::find($venta->telefono);
+            $user->increment('frecuencia',1);
             $query = DB::table('almacenes')
             ->where('fecha','=',$mytime);                                     
             if($tipo_balon == 'normal')// venta balon normal
@@ -261,11 +268,20 @@ class VentaController extends Controller
         ->where([
             ['ventas.estado', '=', 'cancelado'],
         ])
-        ->orderBy('updated_at','desc')
+        ->select('ventas.*','empleados.nombre')
+        ->orderBy('ventas.updated_at','desc')
         ->get();
         return view('ventas.cancelados',compact('ventas'));
     }
 
+    public function buscar_cliente(Request $requesta){
+        $telefono  = $requesta->input('telefono');
+        $user = Cliente::find($telefono);
+        if( $user  == null)
+            return $this->index($telefono);
+        else
+            return $this->index($user);
+    }
 
     public function show_comision_por_balon()
     {

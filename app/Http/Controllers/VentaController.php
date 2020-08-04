@@ -6,7 +6,6 @@ use App\Venta;
 use App\Cliente;
 use App\Empleado;
 use App\Almacen;
-use App\Gastos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -171,11 +170,14 @@ class VentaController extends Controller
         $venta = Venta::find($requesta->id);
         $tipo_balon = $venta->balon;
         $venta->estado = 'realizado';  
-     
+        
         DB::beginTransaction();
         try {
-            $user = Cliente::find($venta->telefono);
-            $user->increment('frecuencia',1);
+            // aumento de frencuencia de cliente
+            $query = DB::table('clientes')
+            ->where('telefono','=',$venta->telefono); 
+            $query->increment('frecuencia');
+
             $query = DB::table('almacenes')
             ->where('fecha','=',$mytime);                                     
             if($tipo_balon == 'normal')// venta balon normal
